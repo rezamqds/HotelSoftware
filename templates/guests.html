@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>html {
+        background-color: #000;
+        color: #fff;
+      }
+      
+      table {
+        border-collapse: collapse;
+        background-color: #222;
+      }
+      
+      th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #444;
+      }
+      
+      a {
+        color: #fff;
+        text-decoration: none;
+      }</style>
+    <title>Guest Table</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th><a href="?sort=is_foreign">is_foreign</a></th>
+          <th><a href="?sort=nationality">nationality</a></th>
+          <th><a href="?sort=first_name">first_name</a></th>
+          <th><a href="?sort=last_name">last_name</a></th>
+          <th><a href="?sort=father_name">father_name</a></th>
+          <th><a href="?sort=national_id">national_id</a></th>
+          <th><a href="?sort=passport_number">passport_number</a></th>
+          <th><a href="?sort=gender">gender</a></th>
+          <th><a href="?sort=birth_date">birth_date</a></th>
+          <th><a href="?sort=phone_number">phone_number</a></th>
+          <th><a href="?sort=leader_name">leader_name</a></th>
+          <th><a href="?sort=leader_phone">leader_phone</a></th>
+          <th><a href="?sort=entry_date">entry_date</a></th>
+          <th><a href="?sort=exit_date">exit_date</a></th>
+          <th><a href="?sort=occupation">occupation</a></th>
+          <th><a href="?sort=accommodation_unit">accommodation_unit</a></th>
+          <th><a href="?sort=pay_type">pay_type</a></th>
+          <th><a href="?sort=advance_payment">advance_payment</a></th>
+          <th><a href="?sort=balance">balance</a></th>
+          <th><a href="?sort=total_amount">total_amount</a></th>
+          <th><a href="?sort=notes">notes</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for guest in guests %}
+        <tr>
+          {% for data in guest %}
+          <td>{{ data }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
