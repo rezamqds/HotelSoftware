@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+
+<body>
+    <form action="http://localhost:5000/add_guest" method="POST">
+        <label>نوع مسافر:</label>
+        <input type="radio" name="is_foreign" value="FALSE" required>ایرانی
+        <input type="radio" name="is_foreign" value="TRUE">خارجی
+        <br><br>
+        
+        <div id="irn-field" style="display:none;">
+            <label>نام:</label>
+            <input type="text" name="name" required>
+            <br><br>
+            
+            <label>نام خانوادگی:</label>
+            <input type="text" name="last_name" required>
+            <br><br>
+            
+            <label>نام پدر:</label>
+            <input type="text" name="father_name" required>
+            <br><br>
+            
+            <label>کد ملی:</label>
+            <input type="text" name="national_id" required>
+            <br><br>
+            
+            <label>تاریخ تولد:</label>
+            <input type="text" name="date_of_birth" required>
+            <br><br>
+            
+            <label>شماره تلفن:</label>
+            <input type="text" name="phone_number" required>
+            <br><br>
+            
+            <label>شغل:</label>
+            <input type="text" name="occupation" required>
+            <br><br>
+            
+            <label>واحد اقامت:</label>
+            <input type="text" name="residence_unit" required>
+            <br><br>
+            
+            <label>تاریخ ورود:</label>
+            <input type="text" name="arrival_date" required>
+            <br><br>
+            
+            <label>تاریخ خروج:</label>
+            <input type="text" name="departure_date" required>
+            <br><br>
+            
+            <label>نوع پرداخت:</label>
+            <input type="text" name="payment_type" required>
+            <br><br>
+            
+            <label>پیش پرداخت:</label>
+            <input type="number" name="advance_payment" required>
+            <br><br>
+            
+            <label>مانده:</label>
+            <input type="number" name="balance" required>
+            <br><br>
+            
+            <label>مبلغ کل:</label>
+            <input type="number" name="total_amount" required>
+            <br><br>
+
+            <label>یادداشت:</label>
+            <textarea name="note"></textarea>
+            <br><br>
+
+        </div>
+        
+        <div id="frg-field" style="display:none;">
+            <label>نام:</label>
+            <input type="text" name="name" required>
+            <br><br>
+            
+            <label>نام خانوادگی:</label>
+            <input type="text" name="last_name" required>
+            <br><br>
+            
+            <label>ملیت:</label>
+            <input type="text" name="nationality" required>
+            <br><br>
+            
+            <label>شماره پاسپورت:</label>
+            <input type="text" name="passport_number" required>
+            <br><br>
+            
+            <label>جنسیت:</label>
+            <input type="text" name="gender" required>
+            <br><br>
+            
+            <label>تاریخ تولد:</label>
+            <input type="text" name="date_of_birth" required>
+            <br><br>
+            
+            <label>شماره تلفن:</label>
+            <input type="text" name="phone_number" required>
+            <br><br>
+            
+            <label>نام لیدر:</label>
+            <input type="text" name="leader_name" required>
+            <br><br>
+            
+            <label>شماره تلفن لیدر:</label>
+            <input type="text" name="leader_phone" required>
+            <br><br>
+            
+            <label>واحد اقامت:</label>
+            <input type="text" name="residence_unit" required>
+            <br><br>
+            
+            <label>تاریخ ورود:</label>
+            <input type="text" name="arrival_date" required>
+            <br><br>
+            
+            <label>تاریخ خروج:</label>
+            <input type="text" name="departure_date" required>
+            <br><br>
+            
+            <label>نوع پرداخت:</label>
+            <input type="text" name="payment_type" required>
+            <br><br>
+            
+            <label>پیش پرداخت:</label>
+            <input type="number" name="advance_payment" required>
+            <br><br>
+            
+            <label>مانده:</label>
+            <input type="number" name="balance" required>
+            <br><br>
+            
+            <label>مبلغ کل:</label>
+            <input type="number" name="total_amount" required>
+            <br><br>
+
+            <label>یادداشت:</label>
+            <textarea name="note"></textarea>
+            <br><br>
+
+
+        </div>
+        
+        <input type="submit" value="ثبت">
+    </form>
+    
+    <script>
+        const passengerTypeRadios = document.querySelectorAll('input[name="is_foreign"]');
+        const irn = document.getElementById('irn-field');
+        const frg = document.getElementById('frg-field');
+        const shql = document.getElementById('occupation');
+        const ldr = document.getElementById('leader_name');
+        const ldr_phone = document.getElementById('leader_name');
+        
+        passengerTypeRadios.forEach(radio => {
+            radio.addEventListener('change', function () {
+                if (this.value === 'FALSE') {
+                    irn.style.display = 'block';
+                    frg.style.display = 'none';
+                    Array.from(irn.querySelectorAll('input')).forEach(input => input.setAttribute('required', 'required'));
+                    Array.from(frg.querySelectorAll('input')).forEach(input => input.removeAttribute('required'));
+                    
+                } else if (this.value === 'TRUE') {
+                    irn.style.display = 'none';
+                    frg.style.display = 'block';
+                    Array.from(frg.querySelectorAll('input')).forEach(input => input.setAttribute('required', 'required'));
+                    Array.from(irn.querySelectorAll('input')).forEach(input => input.removeAttribute('required'));
+
+                }
+            });
+        });
+    </script>
+</body>
+</html>
