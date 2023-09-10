@@ -27,57 +27,56 @@ def fill_form():
 @app.route('/add_guest', methods=['POST', 'GET'])
 def add_guest():
     if request.method == 'POST':
-        form_data = {
-            'is_foreign': request.form['is_foreign'],
-            'nationality': request.form['nationality'],
-            'name': request.form['name'],
-            'last_name': request.form['last_name'],
-            'father_name': request.form['father_name'],
-            'national_id': request.form['national_id'],
-            'passport_number': request.form['passport_number'],
-            'gender': request.form['gender'],
-            'date_of_birth': request.form['date_of_birth'],
-            'phone_number': request.form['phone_number'],
-            'leader_name': request.form['leader_name'],
-            'leader_phone': request.form['leader_phone'],
-            'arrival_date': request.form['arrival_date'],
-            'departure_date': request.form['departure_date'],
-            'occupation': request.form['occupation'],
-            'residence_unit': request.form['residence_unit'],
-            'payment_type': request.form['payment_type'],
-            'advance_payment': request.form['advance_payment'],
-            'balance': request.form['balance'],
-            'total_amount': request.form['total_amount'],
-            'note': request.form['note'],
-        }
-        if request.form['is_foreign'] == 'TRUE':
-            name = request.form['foreign_name']
-            last_name = request.form['foreign_last_name']
-            dop = request.form['f_date_of_birth']
-            ph = request.form['f_phone_number']
-            ar = request.form['f_arrival_date']
-            ex = request.form['f_departure_date']
-            rdu = request.form['f_residence_unit']
-            pt = request.form['f_payment_type']
-            ap = request.form['f_advance_payment']
-            bl = request.form['f_balance']
-            ta = request.form['f_total_amount']
-            note = request.form['f_note']
-            form_data['name'] = name
-            form_data['last_name'] = last_name
-            form_data['date_of_birth'] = dop
-            form_data['phone_number'] = ph
-            form_data['arrival_date'] = ar
-            form_data['departure_date'] = ex
-            form_data['residence_unit'] = rdu
-            form_data['payment_type'] = pt
-            form_data['advance_payment'] = ap
-            form_data['balance'] = bl
-            form_data['total_amount'] = ta
-            form_data['note'] = note
+        if request.form['is_foreign'] == "FALSE":
+            form_data = {
+                'is_foreign': 'FALSE',
+                'nationality': '',
+                'name': request.form['name'],
+                'last_name': request.form['last_name'],
+                'father_name': request.form['father_name'],
+                'national_id': request.form['national_id'],
+                'passport_number': '',
+                'gender': '',
+                'date_of_birth': request.form['date_of_birth'],
+                'phone_number': request.form['phone_number'],
+                'leader_name': '',
+                'leader_phone': '',
+                'arrival_date': request.form['arrival_date'],
+                'departure_date': request.form['departure_date'],
+                'occupation': request.form['occupation'],
+                'residence_unit': request.form['residence_unit'],
+                'payment_type': request.form['payment_type'],
+                'advance_payment': request.form['advance_payment'],
+                'balance': request.form['balance'],
+                'total_amount': request.form['total_amount'],
+                'note': request.form['note'],
+            }
+        else:
+            form_data = {
+                'is_foreign': 'TRUE',
+                'nationality': request.form['nationality'],
+                'name': request.form['foreign_name'],
+                'last_name': request.form['foreign_last_name'],
+                'father_name': '',
+                'national_id': '',
+                'passport_number': request.form['passport_number'],
+                'gender': request.form['gender'],
+                'date_of_birth': request.form['f_date_of_birth'],
+                'phone_number': request.form['f_phone_number'],
+                'leader_name': request.form['leader_name'],
+                'leader_phone': request.form['leader_phone'],
+                'arrival_date': request.form['f_arrival_date'],
+                'departure_date': request.form['f_departure_date'],
+                'occupation': '',
+                'residence_unit': request.form['f_residence_unit'],
+                'payment_type': request.form['f_payment_type'],
+                'advance_payment': request.form['f_advance_payment'],
+                'balance': request.form['f_balance'],
+                'total_amount': request.form['f_total_amount'],
+                'note': request.form['f_note'],
+                }
 
-
-        # print(form_data)
+        print(form_data)
 
         # Connect to the database
         conn = sqlite3.connect('hotel.db')
