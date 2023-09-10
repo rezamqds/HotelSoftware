@@ -1,25 +1,37 @@
 #fp app made by @rezamqds
 
 from flask import Flask, request, render_template
-import sqlite3
+import os, sqlite3 , connection , webbrowser
+
+
+
+# os.path.join(os.getcwd()
+# static_directory = os.path.join(os.getcwd(), 'static')
+# form_dir = os.path.join(static_directory, 'form.html')
+
+
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
 
-
 # @app.route('/test')
 # def test():
-#     return render_template('formt.html')
-
+#     return render_template('t.html',name = "reza")
 
 
 @app.route('/data_entry')
+
 def fill_form():
-   return render_template('form.html')
+    if connection.is_internet_available():
+        return render_template('form_online.html')
+    else:
+        webbrowser.open("/home/admin/Desktop/HotelSoftware/templates/form.html") #use auto close js
+        return render_template('index.html')
 
 
 

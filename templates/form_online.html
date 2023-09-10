@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="fa"></html>
+<html dir="rtl" lang="fa">
+
+</html>
 <html>
+
 <head>
 
+    <!-- dp -->
+    <link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
+    <script type="text/javascript"
+        src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
 
-    <!-- dp  -->
 
-    <link rel="stylesheet" href="static/css/lib/persian-datepicker.min.css">
-    <link rel="stylesheet" href="static/css/main.css">
-
-    <!-- /dp  -->
-
+    <!-- dp -->
 
     <meta charset="UTF-8">
     <title>فرم ثبت اطلاعات مشتریان</title>
@@ -73,43 +75,45 @@
         <!-- <a href="#about">درباره</a> -->
         <a><span>افزودن</span></a>
         <a href="/list">لیست میهمانان</a>
-        
+
     </div>
     <br><br>
 
 
-    <form action="http://localhost:5000/add_guest" method="POST" id="gform">
+    <form action="http://localhost:5000/add_guest" method="POST">
         <label>نوع مسافر:</label>
         <input type="radio" name="is_foreign" value="FALSE" required>ایرانی
         <input type="radio" name="is_foreign" value="TRUE">خارجی
         <br><br>
-        
+
         <div id="irn-field" style="display:none;">
             <label>نام:</label>
             <input type="text" name="name" required autocomplete="off">
             <br><br>
-            
+
             <label>نام خانوادگی:</label>
             <input type="text" name="last_name" required autocomplete="off">
             <br><br>
-            
+
             <label>نام پدر:</label>
             <input type="text" name="father_name" required autocomplete="off">
             <br><br>
-            
+
             <label>کد ملی:</label>
-            <input type="text" name="national_id" required autocomplete="off" pattern="[0-9٠-٩۰-۹]+" title="لطفاً فقط از اعداد استفاده کنید">
+            <input type="text" name="national_id" required autocomplete="off" pattern="[0-9٠-٩۰-۹]+"
+                title="لطفاً فقط از اعداد استفاده کنید">
             <br><br>
-            
+
             <label>تاریخ تولد:</label>
-            <input type="text" name="date_of_birth" class="persianDatapicker" required autocomplete="off">
+            <input type="text" name="date_of_birth" data-jdp required autocomplete="off">
             <!-- <input type="text" name="date_of_birth" required> -->
             <br><br>
-            
+
             <label>شماره تلفن:</label>
-            <input type="text" name="phone_number" required autocomplete="off" pattern="[0-9٠-٩۰-۹]+" title="لطفاً فقط از اعداد استفاده کنید">
+            <input type="text" name="phone_number" required autocomplete="off" pattern="[0-9٠-٩۰-۹]+"
+                title="لطفاً فقط از اعداد استفاده کنید">
             <br><br>
-            
+
 
 
 
@@ -118,7 +122,7 @@
             <label>شغل:</label>
             <input type="text" name="occupation" autocomplete="off">
             <br><br>
-            
+
 
 
 
@@ -135,23 +139,23 @@
                 <option value="ترنج">ترنج</option>
             </select>
             <br><br>
-            
 
 
 
 
 
-            
+
+
             <label>تاریخ ورود:</label>
-            <input type="text" name="arrival_date" class="persianDatapicker" required autocomplete="off">
+            <input type="text" name="arrival_date" data-jdp required autocomplete="off">
             <!-- <input type="text" name="arrival_date" required> -->
             <br><br>
-            
+
             <label>تاریخ خروج:</label>
-            <input type="text" name="departure_date" class="persianDatapicker" required autocomplete="off">
+            <input type="text" name="departure_date" data-jdp required autocomplete="off">
             <!-- <input type="text" name="departure_date" required> -->
             <br><br>
-            
+
             <label>نوع پرداخت:</label>
             <input type="radio" name="payment_type" value="نقدی" required>نقدی
             <input type="radio" name="payment_type" value="کارت">کارت
@@ -160,15 +164,15 @@
 
             <!-- <input type="text" name="payment_type" required> -->
             <br><br>
-            
+
             <label>پیش پرداخت:</label>
             <input type="number" name="advance_payment" required>
             <br><br>
-            
+
             <label>مانده:</label>
             <input type="number" name="balance" required>
             <br><br>
-            
+
             <label>مبلغ کل:</label>
             <input type="number" name="total_amount" required>
             <br><br>
@@ -178,7 +182,7 @@
             <br><br>
 
         </div>
-        
+
 
 
 
@@ -191,11 +195,11 @@
             <label>نام:</label>
             <input type="text" name="foreign_name" required autocomplete="off">
             <br><br>
-            
+
             <label>نام خانوادگی:</label>
             <input type="text" name="foreign_last_name" required autocomplete="off">
-            <br><br>            
-            
+            <br><br>
+
 
 
 
@@ -210,11 +214,11 @@
 
 
 
-            
+
             <label>شماره پاسپورت:</label>
             <input type="text" name="passport_number" required autocomplete="off">
             <br><br>
-            
+
 
 
 
@@ -230,14 +234,15 @@
 
 
             <label>تاریخ تولد:</label>
-            <input type="text" name="f_date_of_birth" class="persianDatapicker" required autocomplete="off">
+            <input type="text" name="f_date_of_birth" data-jdp required autocomplete="off">
             <!-- <input type="text" name="f_date_of_birth" required> -->
             <br><br>
-            
+
             <label>شماره تلفن:</label>
-            <input type="text" name="f_phone_number" required autocomplete="off" pattern="[0-9٠-٩۰-۹]+" title="لطفاً فقط از اعداد استفاده کنید">
+            <input type="text" name="f_phone_number" required autocomplete="off" pattern="[0-9٠-٩۰-۹]+"
+                title="لطفاً فقط از اعداد استفاده کنید">
             <br><br>
-            
+
 
 
 
@@ -245,14 +250,15 @@
             <label>نام لیدر:</label>
             <input type="text" name="leader_name" required autocomplete="off">
             <br><br>
-            
+
             <label>شماره تلفن لیدر:</label>
-            <input type="text" name="leader_phone" required autocomplete="off" pattern="[0-9٠-٩۰-۹]+" title="لطفاً فقط از اعداد استفاده کنید">
+            <input type="text" name="leader_phone" required autocomplete="off" pattern="[0-9٠-٩۰-۹]+"
+                title="لطفاً فقط از اعداد استفاده کنید">
             <br><br>
 
 
 
-            
+
             <label>واحد اقامت:</label>
             <!-- <input type="text" name="f_residence_unit" required> -->
             <select name="f_residence_unit" required>
@@ -271,31 +277,31 @@
 
 
 
-            
+
             <label>تاریخ ورود:</label>
-            <input type="text" name="f_arrival_date" class="persianDatapicker" required autocomplete="off">
+            <input type="text" name="f_arrival_date" data-jdp required autocomplete="off">
             <!-- <input type="text" name="f_arrival_date" required> -->
             <br><br>
-            
+
             <label>تاریخ خروج:</label>
-            <input type="text" name="f_departure_date" class="persianDatapicker" required autocomplete="off">
+            <input type="text" name="f_departure_date" data-jdp required autocomplete="off">
             <!-- <input type="text" name="f_departure_date" required> -->
             <br><br>
-            
+
 
 
             <label>نوع پرداخت:</label>
             <input type="text" name="f_payment_type" required>
             <br><br>
-            
+
             <label>پیش پرداخت:</label>
             <input type="number" name="f_advance_payment" required>
             <br><br>
-            
+
             <label>مانده:</label>
             <input type="number" name="f_balance" required>
             <br><br>
-            
+
             <label>مبلغ کل:</label>
             <input type="number" name="f_total_amount" required>
             <br><br>
@@ -306,21 +312,11 @@
 
 
         </div>
-        
+
         <input type="submit" value="ثبت">
     </form>
 
 
-
-    <!-- dp  -->
-    <script src="static/js/lib/jquery-3.2.1.min.js"></script>
-    <script src="static/js/lib/persian-date.min.js"></script>
-    <script src="static/js/lib/persian-datepicker.min.js"></script>
-    <script src="static/js/app.js"></script>
-    <!-- /dp  -->
-
-
-    
     <script>
         const passengerTypeRadios = document.querySelectorAll('input[name="is_foreign"]');
         const irn = document.getElementById('irn-field');
@@ -335,7 +331,7 @@
         const iranianResidenceUnit = document.querySelector('select[name="residence_unit"]');
         const foreignResidenceUnit = document.querySelector('select[name="f_residence_unit"]');
         const f_ph = document.querySelector('input[name="f_phone_number"]');
-        
+
         passengerTypeRadios.forEach(radio => {
             radio.addEventListener('change', function () {
                 if (this.value === 'FALSE') {
@@ -349,8 +345,8 @@
                     bl.removeAttribute('required');
                     foreignResidenceUnit.removeAttribute('required');
                     f_ph.removeAttribute('required');
-                    
-                    
+
+
                 } else if (this.value === 'TRUE') {
                     irn.style.display = 'none';
                     frg.style.display = 'block';
@@ -367,16 +363,9 @@
         });
     </script>
 
-
-
-<script>
-    document.getElementById("gform").addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent the form from actually submitting
-        window.close(); // Close the window
-    });
-</script>
-
-
-
+    <!-- dp -->
+    <script>jalaliDatepicker.startWatch();</script>
+    <!-- dp -->
 </body>
+
 </html>
