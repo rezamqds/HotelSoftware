@@ -15,7 +15,6 @@ c.execute('''
         gender TEXT,                  -- جنسیت
         date_of_birth TEXT,           -- تاریخ تولد
         phone_number TEXT,            -- تلفن همراه یا ثابت
-        address TEXT,                 -- ادرس
         arrival_date TEXT,            -- تاریخ ورود
         departure_date TEXT,          -- تاریخ خروج
         residence_unit TEXT,          -- نام واحد اقامتی        
