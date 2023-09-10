@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa"></html>
+<html>
+<head>
+    <!-- dp  -->
+    <link rel="stylesheet" href="static/css/lib/persian-datepicker.min.css">
+    <link rel="stylesheet" href="static/css/main.css">
+    <!-- /dp  -->
+    <meta charset="UTF-8">
+    <title>فرم ثبت اطلاعات مشتریان</title>
+    <style>
+        * {
+            font-size: 20px;
+            /* Set your desired font size in pixels */
+        }
+
+        body {
+            background-color: rgb(0, 91, 119);
+            color: rgb(251, 255, 0);
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            margin: 0 auto;
+            width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 5px;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .navbar {
+            background-color: black;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="navbar">
+        <a href="/">خانه</a>
+        <!-- <a href="#about">درباره</a> -->
+        <a><span>افزودن</span></a>
+        <a href="/list">لیست میهمانان</a>
+        
+    </div>
+    <br><br>
+
+
+    <form action="http://localhost:5000/add_guest" method="POST">
+        <label>نوع مسافر:</label>
+        <input type="radio" name="is_foreign" value="FALSE" required>ایرانی
+        <input type="radio" name="is_foreign" value="TRUE">خارجی
+        <br><br>
+        
+        <div id="irn-field" style="display:none;">
+            <label>نام:</label>
+            <input type="text" name="name" required autocomplete="off">
+            <br><br>
+            
+            <label>نام خانوادگی:</label>
+            <input type="text" name="last_name" required autocomplete="off">
+            <br><br>
+            
+            <label>نام پدر:</label>
+            <input type="text" name="father_name" required autocomplete="off">
+            <br><br>
+            
+            <label>کد ملی:</label>
+            <input type="text" name="national_id" required autocomplete="off">
+            <br><br>
+            
+            <label>تاریخ تولد:</label>
+            <input type="text" name="date_of_birth" class="persianDatapicker" required autocomplete="off">
+            <!-- <input type="text" name="date_of_birth" required> -->
+            <br><br>
+            
+            <label>شماره تلفن:</label>
+            <input type="text" name="phone_number" required autocomplete="off">
+            <br><br>
+            
+
+
+
+            <!-- check it later !!!  -->
+            <!-- Add a list and at the end of list other option to fill other and its not required -->
+            <label>شغل:</label>
+            <input type="text" name="occupation" required autocomplete="off">
+            <br><br>
+            
+
+
+
+            <label>واحد اقامت:</label>
+            <!-- <input type="text" name="residence_unit" required> -->
+            <select name="residence_unit" required>
+                <option value="" disabled selected>انتخاب کنید</option>
+                <option value="پنج دری">پنج دری</option>
+                <option value="شاه نشین یک">شاه نشین یک</option>
+                <option value="شاه نشین دو">شاه نشین دو</option>
+                <option value="گل مرغ">گل مرغ</option>
+                <option value="بهار">بهار</option>
+                <option value="نارنج">نارنج</option>
+                <option value="ترنج">ترنج</option>
+            </select>
+            <br><br>
+            
+
+
+
+
+
+            
+            <label>تاریخ ورود:</label>
+            <input type="text" name="arrival_date" class="persianDatapicker" required autocomplete="off">
+            <!-- <input type="text" name="arrival_date" required> -->
+            <br><br>
+            
+            <label>تاریخ خروج:</label>
+            <input type="text" name="departure_date" class="persianDatapicker" required autocomplete="off">
+            <!-- <input type="text" name="departure_date" required> -->
+            <br><br>
+            
+            <label>نوع پرداخت:</label>
+            <input type="radio" name="payment_type" value="نقدی" required>نقدی
+            <input type="radio" name="payment_type" value="کارت">کارت
+            <input type="radio" name="payment_type" value="جاباما">جاباما
+            <input type="radio" name="payment_type" value="اسنپ تریپ">اسنپ تریپ
+
+            <!-- <input type="text" name="payment_type" required> -->
+            <br><br>
+            
+            <label>پیش پرداخت:</label>
+            <input type="number" name="advance_payment" required>
+            <br><br>
+            
+            <label>مانده:</label>
+            <input type="number" name="balance" required>
+            <br><br>
+            
+            <label>مبلغ کل:</label>
+            <input type="number" name="total_amount" required>
+            <br><br>
+
+            <label>یادداشت:</label>
+            <textarea name="note"></textarea>
+            <br><br>
+
+        </div>
+        
+
+
+
+
+
+
+        <!-- frg -->
+
+        <div id="frg-field" style="display:none;">
+            <label>نام:</label>
+            <input type="text" name="foreign_name" required autocomplete="off">
+            <br><br>
+            
+            <label>نام خانوادگی:</label>
+            <input type="text" name="foreign_last_name" required autocomplete="off">
+            <br><br>            
+            
+
+
+
+
+            <!-- check it later -->
+            <!-- like job , a llist and other option -->
+            <label>ملیت:</label>
+            <input type="text" name="nationality" required autocomplete="off">
+            <br><br>
+
+
+
+
+
+            
+            <label>شماره پاسپورت:</label>
+            <input type="text" name="passport_number" required autocomplete="off">
+            <br><br>
+            
+
+
+
+
+            <label>جنسیت:</label>
+            <!-- <input type="text" name="gender" required> -->
+            <input type="radio" name="gender" value="مرد" required>مرد
+            <input type="radio" name="gender" value="زن">زن
+            <br><br>
+
+
+
+
+            <label>تاریخ تولد:</label>
+            <input type="text" name="f_date_of_birth" class="persianDatapicker" required autocomplete="off">
+            <!-- <input type="text" name="f_date_of_birth" required> -->
+            <br><br>
+            
+            <label>شماره تلفن:</label>
+            <input type="text" name="f_phone_number" required autocomplete="off">
+            <br><br>
+            
+
+
+
+            <!-- # oter option like job -->
+            <label>نام لیدر:</label>
+            <input type="text" name="leader_name" required autocomplete="off">
+            <br><br>
+            
+            <label>شماره تلفن لیدر:</label>
+            <input type="text" name="leader_phone" required autocomplete="off">
+            <br><br>
+
+
+
+            
+            <label>واحد اقامت:</label>
+            <!-- <input type="text" name="f_residence_unit" required> -->
+            <select name="f_residence_unit" required>
+                <option value="" disabled selected>انتخاب کنید</option>
+                <option value="پنج دری">پنج دری</option>
+                <option value="شاه نشین یک">شاه نشین یک</option>
+                <option value="شاه نشین دو">شاه نشین دو</option>
+                <option value="گل مرغ">گل مرغ</option>
+                <option value="بهار">بهار</option>
+                <option value="نارنج">نارنج</option>
+                <option value="ترنج">ترنج</option>
+            </select>
+            <br><br>
+
+
+
+
+
+            
+            <label>تاریخ ورود:</label>
+            <input type="text" name="f_arrival_date" class="persianDatapicker" required autocomplete="off">
+            <!-- <input type="text" name="f_arrival_date" required> -->
+            <br><br>
+            
+            <label>تاریخ خروج:</label>
+            <input type="text" name="f_departure_date" class="persianDatapicker" required autocomplete="off">
+            <!-- <input type="text" name="f_departure_date" required> -->
+            <br><br>
+            
+
+
+            <label>نوع پرداخت:</label>
+            <input type="text" name="f_payment_type" required>
+            <br><br>
+            
+            <label>پیش پرداخت:</label>
+            <input type="number" name="f_advance_payment" required>
+            <br><br>
+            
+            <label>مانده:</label>
+            <input type="number" name="f_balance" required>
+            <br><br>
+            
+            <label>مبلغ کل:</label>
+            <input type="number" name="f_total_amount" required>
+            <br><br>
+
+            <label>یادداشت:</label>
+            <textarea name="f_note"></textarea>
+            <br><br>
+
+
+        </div>
+        
+        <input type="submit" value="ثبت">
+    </form>
+
+
+
+    <!-- dp  -->
+    <script src="static/js/lib/jquery-3.2.1.min.js"></script>
+    <script src="static/js/lib/persian-date.min.js"></script>
+    <script src="static/js/lib/persian-datepicker.min.js"></script>
+    <script src="static/js/app.js"></script>
+    <!-- /dp  -->
+
+
+    
+    <script>
+        const passengerTypeRadios = document.querySelectorAll('input[name="is_foreign"]');
+        const irn = document.getElementById('irn-field');
+        const frg = document.getElementById('frg-field');
+        const shql = document.getElementById('occupation');
+        const ldr = document.getElementById('leader_name');
+        const ldr_phone = document.getElementById('leader_name');
+        
+        passengerTypeRadios.forEach(radio => {
+            radio.addEventListener('change', function () {
+                if (this.value === 'FALSE') {
+                    irn.style.display = 'block';
+                    frg.style.display = 'none';
+                    Array.from(irn.querySelectorAll('input')).forEach(input => input.setAttribute('required', 'required'));
+                    Array.from(frg.querySelectorAll('input')).forEach(input => input.removeAttribute('required'));
+                    
+                } else if (this.value === 'TRUE') {
+                    irn.style.display = 'none';
+                    frg.style.display = 'block';
+                    Array.from(frg.querySelectorAll('input')).forEach(input => input.setAttribute('required', 'required'));
+                    Array.from(irn.querySelectorAll('input')).forEach(input => input.removeAttribute('required'));
+
+                }
+            });
+        });
+    </script>
+</body>
+</html>

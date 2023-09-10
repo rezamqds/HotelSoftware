@@ -11,15 +11,15 @@ def home():
 
 
 
-@app.route('/test')
-def test():
-    return render_template('formt.html')
+# @app.route('/test')
+# def test():
+#     return render_template('formt.html')
 
 
 
-@app.route('/guest_fill_form')
+@app.route('/data_entry')
 def fill_form():
-   return render_template('guestFillForm.html')
+   return render_template('form.html')
 
 
 
