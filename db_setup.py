@@ -29,15 +29,15 @@ c.execute('''
     );
 ''')
 
-c.execute('''CREATE TABLE companions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    guest_id INTEGER,           -- شناسه مسافر مرتبط
-    first_name TEXT,            -- نام
-    last_name TEXT,             -- نام خانوادگی
-    national_id TEXT,           -- کد ملی
-    relationship TEXT,          -- نسبت
-    gender TEXT                 -- جنسیت
-); ''')
+# c.execute('''CREATE TABLE companions (
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     guest_id INTEGER,           -- شناسه مسافر مرتبط
+#     first_name TEXT,            -- نام
+#     last_name TEXT,             -- نام خانوادگی
+#     national_id TEXT,           -- کد ملی
+#     relationship TEXT,          -- نسبت
+#     gender TEXT                 -- جنسیت
+# ); ''')
 
 conn.commit()
 print ("Table created successfully")

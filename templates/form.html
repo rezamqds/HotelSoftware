@@ -110,7 +110,7 @@
             <!-- check it later !!!  -->
             <!-- Add a list and at the end of list other option to fill other and its not required -->
             <label>شغل:</label>
-            <input type="text" name="occupation" required autocomplete="off">
+            <input type="text" name="occupation" autocomplete="off">
             <br><br>
             
 
@@ -215,9 +215,10 @@
 
             <label>جنسیت:</label>
             <!-- <input type="text" name="gender" required> -->
-            <input type="radio" name="gender" value="مرد" required>مرد
-            <input type="radio" name="gender" value="زن">زن
+            <input type="radio" name="gender" value="مرد" required> مرد
+            <input type="radio" name="gender" value="زن"> زن
             <br><br>
+
 
 
 
@@ -318,9 +319,13 @@
         const passengerTypeRadios = document.querySelectorAll('input[name="is_foreign"]');
         const irn = document.getElementById('irn-field');
         const frg = document.getElementById('frg-field');
-        const shql = document.getElementById('occupation');
-        const ldr = document.getElementById('leader_name');
-        const ldr_phone = document.getElementById('leader_name');
+        const shql = document.querySelector('input[name="occupation"]');
+        const ldr = document.querySelector('input[name="leader_name"]');
+        const ldr_phone = document.querySelector('input[name="leader_phone"]');
+        const f_ap = document.querySelector('input[name="f_advance_payment"]');
+        const f_bl = document.querySelector('input[name="f_balance"]');
+        const ap = document.querySelector('input[name="advance_payment"]');
+        const bl = document.querySelector('input[name="balance"]');
         
         passengerTypeRadios.forEach(radio => {
             radio.addEventListener('change', function () {
@@ -329,12 +334,21 @@
                     frg.style.display = 'none';
                     Array.from(irn.querySelectorAll('input')).forEach(input => input.setAttribute('required', 'required'));
                     Array.from(frg.querySelectorAll('input')).forEach(input => input.removeAttribute('required'));
+                    shql.removeAttribute('required');
+                    ap.removeAttribute('required');
+                    bl.removeAttribute('required');
+                    
+                    
                     
                 } else if (this.value === 'TRUE') {
                     irn.style.display = 'none';
                     frg.style.display = 'block';
                     Array.from(frg.querySelectorAll('input')).forEach(input => input.setAttribute('required', 'required'));
                     Array.from(irn.querySelectorAll('input')).forEach(input => input.removeAttribute('required'));
+                    ldr.removeAttribute('required');
+                    ldr_phone.removeAttribute('required');
+                    f_ap.removeAttribute('required');
+                    f_bl.removeAttribute('required');
 
                 }
             });
