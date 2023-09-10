@@ -30,6 +30,7 @@ def fill_form():
     if connection.is_internet_available():
         return render_template('form_online.html')
     else:
+        # importance to chnage dir in every pc if not using join map !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         webbrowser.open("/home/admin/Desktop/HotelSoftware/templates/form.html") #use auto close js
         return render_template('index.html')
 
