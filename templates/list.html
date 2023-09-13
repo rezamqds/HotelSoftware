@@ -1,66 +1,77 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>لیست گزارش کلی میهمانان</title>
-    <style>html {
-        background-color: #000;
-        color: #fff;
-      }
-      
-      table {
-        border-collapse: collapse;
-        background-color: #222;
-      }
-      
-      th, td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #444;
-      }
-      
-      a {
-        color: #fff;
-        text-decoration: none;
-      }</style>
-    <title>Guest Table</title>
-  </head>
-  <body>
-    <table>
-      <thead>
-        <tr>
-          <th>ردیف</th>
-          <th><a href="?sort=is_foreign">is_frg</a></th>
-          <th><a href="?sort=nationality">ملیت</a></th>
-          <th><a href="?sort=first_name">نام</a></th>
-          <th><a href="?sort=last_name">نام خانوادگی</a></th>
-          <th><a href="?sort=father_name">نام پدر</a></th>
-          <th><a href="?sort=national_id">کد ملی</a></th>
-          <th><a href="?sort=passport_number">شماره پاسپورت</a></th>
-          <th><a href="?sort=gender">جنسیت</a></th>
-          <th><a href="?sort=birth_date">تاریخ تولد</a></th>
-          <th><a href="?sort=phone_number">تلفن</a></th>
-          <th><a href="?sort=leader_name">لیدر</a></th>
-          <th><a href="?sort=leader_phone">تلفن لیدر</a></th>
-          <th><a href="?sort=entry_date">ورود</a></th>
-          <th><a href="?sort=exit_date">خروج</a></th>
-          <th><a href="?sort=occupation">شغل</a></th>
-          <th><a href="?sort=accommodation_unit">واحد</a></th>
-          <th><a href="?sort=pay_type">پرداخت</a></th>
-          <th><a href="?sort=advance_payment">پیش</a></th>
-          <th><a href="?sort=balance">مانده</a></th>
-          <th><a href="?sort=total_amount">کل</a></th>
-          <th><a href="?sort=notes">یادداشت</a></th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for guest in guests %}
-        <tr>
-          {% for data in guest %}
-          <td>{{ data }}</td>
-          {% endfor %}
-        </tr>
+
+<head>
+  <title>لیست گزارش کلی میهمانان</title>
+  <style>
+    /* Add this style to add lines between table rows */
+    tr {
+      border-bottom: 1px solid #444;
+    }
+
+    html {
+      background-color: #ffe0e0;
+      color: #000000;
+    }
+
+    table {
+      border-collapse: collapse;
+      background-color: #d7d6ff;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #444;
+    }
+
+    a {
+      color: #000000;
+      text-decoration: none;
+    }
+  </style>
+  <title>Guest Table</title>
+</head>
+
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>ردیف</th>
+        <th><a href="?sort=is_foreign">is_frg</a></th>
+        <th><a href="?sort=nationality">ملیت</a></th>
+        <th><a href="?sort=first_name">نام</a></th>
+        <th><a href="?sort=last_name">نام خانوادگی</a></th>
+        <th><a href="?sort=father_name">نام پدر</a></th>
+        <th><a href="?sort=national_id">کد ملی</a></th>
+        <th><a href="?sort=passport_number">شماره پاسپورت</a></th>
+        <th><a href="?sort=gender">جنسیت</a></th>
+        <th><a href="?sort=birth_date">تاریخ تولد</a></th>
+        <th><a href="?sort=phone_number">تلفن</a></th>
+        <th><a href="?sort=leader_name">لیدر</a></th>
+        <th><a href="?sort=leader_phone">تلفن لیدر</a></th>
+        <th><a href="?sort=entry_date">ورود</a></th>
+        <th><a href="?sort=exit_date">خروج</a></th>
+        <th><a href="?sort=occupation">شغل</a></th>
+        <th><a href="?sort=accommodation_unit">واحد</a></th>
+        <th><a href="?sort=pay_type">پرداخت</a></th>
+        <th><a href="?sort=advance_payment">پیش</a></th>
+        <th><a href="?sort=balance">مانده</a></th>
+        <th><a href="?sort=total_amount">کل</a></th>
+        <th><a href="?sort=notes">یادداشت</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for guest in guests %}
+      <tr>
+        {% for data in guest %}
+        <td>{{ data }}</td>
         {% endfor %}
-      </tbody>
-    </table>
-  </body>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+
 </html>

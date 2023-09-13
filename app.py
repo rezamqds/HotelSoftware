@@ -123,7 +123,7 @@ def get_guests():
     c = conn.cursor()
     c.execute("SELECT * FROM guests")
     guests = c.fetchall()
-    return render_template('guests.html', guests=guests)
+    return render_template('list.html', guests=guests)
 
 
 if __name__ == '__main__':
