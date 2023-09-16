@@ -269,7 +269,7 @@
                 <!-- اطلاعات هر همراه به صورت داینامیک اینجا اضافه می‌شود -->
             </div>
         </div>
-
+        <br>
         <button type="button" id="submit-button">ذخیره</button>
         <div id="confirmation-message" style="display:none;"></div>
     </form>
@@ -420,9 +420,10 @@
             confirmationMessage.classList.add('error-message'); // Add 'error-message' class
             confirmationMessage.style.display = 'block';
         } else {
-            // If all required fields are filled, submit the form
-            guestForm.submit();
-        }
+        // If all required fields are filled, submit the form
+        const guestForm = document.getElementById('guest-form'); // Get the form element
+        guestForm.submit(); // Submit the form
+    }
     });
 
 
