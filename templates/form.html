@@ -1,20 +1,12 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="fa"></html>
-<html>
+<html dir="rtl" lang="fa">
 <head>
 
-    
-    <meta charset="utf-8">  
     <!-- dp  -->
-
     <link rel="stylesheet" href="static/css/lib/persian-datepicker.min.css">
     <link rel="stylesheet" href="static/css/main.css">
-
     <!-- /dp  -->
 
-
-    <meta charset="UTF-8">
-    <title>فرم ثبت اطلاعات مشتریان</title>
     <style>
         * {
             font-size: 20px;
@@ -67,8 +59,6 @@
 </head>
 
 <body>
-
-
     <div class="navbar">
         <a href="/">خانه</a>
         <!-- <a href="#about">درباره</a> -->
@@ -78,8 +68,7 @@
     </div>
     <br><br>
 
-<!-- id="gform" -->
-    <form action="http://localhost:5000/add_guest" method="POST" >
+    <form id="guest-form" action="http://localhost:5000/add_guest" method="POST" >
         <label>نوع مسافر:</label>
         <input type="radio" name="is_foreign" value="FALSE" required>ایرانی
         <input type="radio" name="is_foreign" value="TRUE">خارجی
@@ -103,28 +92,18 @@
             <br><br>
             
             <label>تاریخ تولد:</label>
-            <input type="text" name="date_of_birth" class="persianDatapicker" required autocomplete="off" placeholder="کلیک کنید">
-            <!-- <input type="text" name="date_of_birth" required> -->
+            <input type="text" name="date_of_birth" class="persianDatepicker" required autocomplete="off" placeholder="کلیک کنید">
             <br><br>
             
             <label>شماره تلفن:</label>
             <input type="text" name="phone_number" required autocomplete="off" pattern="[0-9٠-٩۰-۹]+" title="لطفاً فقط از اعداد استفاده کنید">
             <br><br>
             
-
-
-
-            <!-- check it later !!!  -->
-            <!-- Add a list and at the end of list other option to fill other and its not required -->
             <label>شغل:</label>
             <input type="text" name="occupation" autocomplete="off">
             <br><br>
             
-
-
-
             <label>واحد اقامت:</label>
-            <!-- <input type="text" name="residence_unit" required> -->
             <select name="residence_unit" required>
                 <option value="" disabled selected>انتخاب کنید</option>
                 <option value="پنج دری">پنج دری</option>
@@ -137,20 +116,12 @@
             </select>
             <br><br>
             
-
-
-
-
-
-            
             <label>تاریخ ورود:</label>
-            <input type="text" name="arrival_date" class="persianDatapicker" required autocomplete="off" placeholder="کلیک کنید">
-            <!-- <input type="text" name="arrival_date" required> -->
+            <input type="text" name="arrival_date" class="persianDatepicker" required autocomplete="off" placeholder="کلیک کنید">
             <br><br>
             
             <label>تاریخ خروج:</label>
-            <input type="text" name="departure_date" class="persianDatapicker" required autocomplete="off" placeholder="کلیک کنید">
-            <!-- <input type="text" name="departure_date" required> -->
+            <input type="text" name="departure_date" class="persianDatepicker" required autocomplete="off" placeholder="کلیک کنید">
             <br><br>
             
             <label>نوع پرداخت:</label>
@@ -158,8 +129,6 @@
             <input type="radio" name="payment_type" value="کارت">کارت
             <input type="radio" name="payment_type" value="جاباما">جاباما
             <input type="radio" name="payment_type" value="اسنپ تریپ">اسنپ تریپ
-
-            <!-- <input type="text" name="payment_type" required> -->
             <br><br>
             
             <label>پیش پرداخت:</label>
@@ -179,15 +148,7 @@
             <br><br>
 
         </div>
-        
-
-
-
-
-
-
-        <!-- frg -->
-
+    
         <div id="frg-field" style="display:none;">
             <label>نام:</label>
             <input type="text" name="foreign_name" required autocomplete="off">
@@ -196,53 +157,28 @@
             <label>نام خانوادگی:</label>
             <input type="text" name="foreign_last_name" required autocomplete="off">
             <br><br>            
-            
 
-
-
-
-            <!-- check it later -->
-            <!-- like job , a llist and other option -->
             <label>ملیت:</label>
             <input type="text" name="nationality" required autocomplete="off">
             <br><br>
 
-
-
-
-
-            
             <label>شماره پاسپورت:</label>
             <input type="text" name="passport_number" required autocomplete="off">
             <br><br>
             
-
-
-
-
             <label>جنسیت:</label>
-            <!-- <input type="text" name="gender" required> -->
             <input type="radio" name="gender" value="مرد"> مرد
             <input type="radio" name="gender" value="زن"> زن
             <br><br>
 
-
-
-
-
             <label>تاریخ تولد:</label>
-            <input type="text" name="f_date_of_birth" class="persianDatapicker" required autocomplete="off" placeholder="کلیک کنید">
-            <!-- <input type="text" name="f_date_of_birth" required> -->
+            <input type="text" name="f_date_of_birth" class="persianDatepicker" required autocomplete="off" placeholder="کلیک کنید">
             <br><br>
             
             <label>شماره تلفن:</label>
             <input type="text" name="f_phone_number" required autocomplete="off" pattern="[0-9٠-٩۰-۹]+" title="لطفاً فقط از اعداد استفاده کنید">
             <br><br>
             
-
-
-
-            <!-- # oter option like job -->
             <label>نام لیدر:</label>
             <input type="text" name="leader_name" required autocomplete="off">
             <br><br>
@@ -250,12 +186,8 @@
             <label>شماره تلفن لیدر:</label>
             <input type="text" name="leader_phone" required autocomplete="off" pattern="[0-9٠-٩۰-۹]+" title="لطفاً فقط از اعداد استفاده کنید">
             <br><br>
-
-
-
             
             <label>واحد اقامت:</label>
-            <!-- <input type="text" name="f_residence_unit" required> -->
             <select name="f_residence_unit" required>
                 <option value="" disabled selected>انتخاب کنید</option>
                 <option value="پنج دری">پنج دری</option>
@@ -267,23 +199,14 @@
                 <option value="ترنج">ترنج</option>
             </select>
             <br><br>
-
-
-
-
-
             
             <label>تاریخ ورود:</label>
-            <input type="text" name="f_arrival_date" class="persianDatapicker" required autocomplete="off" placeholder="کلیک کنید">
-            <!-- <input type="text" name="f_arrival_date" required> -->
+            <input type="text" name="f_arrival_date" class="persianDatepicker" required autocomplete="off" placeholder="کلیک کنید">
             <br><br>
             
             <label>تاریخ خروج:</label>
-            <input type="text" name="f_departure_date" class="persianDatapicker" required autocomplete="off" placeholder="کلیک کنید">
-            <!-- <input type="text" name="f_departure_date" required> -->
+            <input type="text" name="f_departure_date" class="persianDatepicker" required autocomplete="off" placeholder="کلیک کنید">
             <br><br>
-            
-
 
             <label>نوع پرداخت:</label>
             <input type="text" name="f_payment_type" required autocomplete="off">
@@ -304,24 +227,35 @@
             <label>یادداشت:</label>
             <textarea name="f_note"></textarea>
             <br><br>
-
-
         </div>
-        
-        <input type="submit" value="ثبت">
+    
+        <div id="hamrah" style="display: none;">
+            <label>همراه دارد؟</label>
+            <input type="radio" name="is_comp" id="comp_yes" required>بله
+            <input type="radio" name="is_comp" id="comp_no">خیر
+        </div>
+
+        <div id="companions-section" style="display:none;">
+            <h2>اطلاعات همراهان</h2>
+            <button type="button" id="add-companion">افزودن همراه</button>
+            <div id="companions">
+                <!-- اطلاعات هر همراه به صورت داینامیک اینجا اضافه می‌شود -->
+            </div>
+        </div>
+
+        <button type="button" id="submit-button">ذخیره</button>
+        <div id="confirmation-message" style="display:none;"></div>
     </form>
 
 
 
-    <!-- dp  -->
-    <script src="static/js/lib/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="static/js/lib/persian-date.min.js"></script>
     <script src="static/js/lib/persian-datepicker.min.js"></script>
-    <script src="static/js/app.js"></script>
-    <!-- /dp  -->
+    <script src="static/js/main.js"></script>
 
 
-    
+
     <script>
         const passengerTypeRadios = document.querySelectorAll('input[name="is_foreign"]');
         const irn = document.getElementById('irn-field');
@@ -336,9 +270,11 @@
         const iranianResidenceUnit = document.querySelector('select[name="residence_unit"]');
         const foreignResidenceUnit = document.querySelector('select[name="f_residence_unit"]');
         const f_ph = document.querySelector('input[name="f_phone_number"]');
-        
+        const hamrah = document.getElementById('hamrah');
+
         passengerTypeRadios.forEach(radio => {
             radio.addEventListener('change', function () {
+                
                 if (this.value === 'FALSE') {
                     // Internal 
                     irn.style.display = 'block';
@@ -350,8 +286,9 @@
                     bl.removeAttribute('required');
                     foreignResidenceUnit.removeAttribute('required');
                     f_ph.removeAttribute('required');
-                    
-                    
+                    hamrah.style.display = 'block';
+
+
                 } else if (this.value === 'TRUE') {
                     irn.style.display = 'none';
                     frg.style.display = 'block';
@@ -362,6 +299,8 @@
                     f_ap.removeAttribute('required');
                     f_bl.removeAttribute('required');
                     iranianResidenceUnit.removeAttribute('required');
+                    hamrah.style.display = 'block';
+
 
                 }
             });
@@ -369,15 +308,94 @@
     </script>
 
 
-<!-- 
-<script>
-    document.getElementById("gform").addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent the form from actually submitting
-        window.close(); // Close the window
-    });
-</script>
- -->
+    <script>
 
+    const addCompanionButton = document.getElementById('add-companion');
+    const companionsContainer = document.getElementById('companions');
+    const submitButton = document.getElementById('submit-button');
+    const confirmationMessage = document.getElementById('confirmation-message');
+    let companionCount = 0;
+
+    addCompanionButton.addEventListener('click', function () {
+        if (companionCount < 8) {
+            companionCount++;
+
+            const companionDiv = document.createElement('div');
+            companionDiv.innerHTML = `
+            <h3>اطلاعات همراه ${companionCount}</h3>
+            <label for="companion-name-${companionCount}">نام:</label>
+            <input type="text" id="companion-name-${companionCount}" name="companion-name-${companionCount}" required>
+            <br>
+            <label for="companion-lastname-${companionCount}">نام خانوادگی:</label>
+            <input type="text" id="companion-lastname-${companionCount}" name="companion-lastname-${companionCount}" required>
+            <br>
+            <label for="companion-rel-${companionCount}">نسبت:</label>
+            <input type="text" id="companion-rel-${companionCount}" name="companion-rel-${companionCount}" required>
+            <br>
+            <label for="companion-national-id-${companionCount}">کد ملی:</label>
+            <input type="text" id="companion-national-id-${companionCount}" name="companion-national-id-${companionCount}" required>
+            <br>
+            <label for="companion-gender-${companionCount}">جنسیت:</label>
+            <select id="companion-gender-${companionCount}" name="companion-gender-${companionCount}" required>
+                <option value="مرد">مرد</option>
+                <option value="زن">زن</option>
+            </select>
+            <br>
+            <button type="button" class="remove-companion">حذف همراه</button>
+        `;
+
+            companionsContainer.appendChild(companionDiv);
+
+            const removeCompanionButton = companionDiv.querySelector('.remove-companion');
+            removeCompanionButton.addEventListener('click', function () {
+                companionCount--;
+                companionsContainer.removeChild(companionDiv);
+            });
+        } else {
+            alert('نمی‌توانید بیش از 8 همراه اضافه کنید.');
+        }
+    });
+
+    const compYesRadio = document.getElementById("comp_yes");
+    const compNoRadio = document.getElementById("comp_no");
+    const companionsSection = document.getElementById('companions-section');
+    
+    compYesRadio.addEventListener("change", function () {
+        if (compYesRadio.checked) {
+            companionsSection.style.display = "block";
+        }
+    });
+
+    submitButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        let isValid = true;
+        const requiredFields = document.querySelectorAll('input[required]');
+        const errorMessages = [];
+
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                field.classList.add('error'); // You can add a CSS class for error styling
+                isValid = false;
+                errorMessages.push(`لطفا فیلد ${field.getAttribute('name')} را پر کنید.`);
+            } else {
+                field.classList.remove('error');
+            }
+        });
+
+        if (!isValid) {
+            // Display error messages
+            confirmationMessage.textContent = errorMessages.join('\n');
+            confirmationMessage.style.display = 'block';
+        } else {
+            // If all required fields are filled, submit the form
+            const isConfirmed = confirm('آیا می‌خواهید اطلاعات را ذخیره کنید؟');
+            if (isConfirmed) {
+                document.getElementById('guest-form').submit();
+            }
+        }
+    });
+    </script>
 
 </body>
 </html>
