@@ -56,6 +56,30 @@
             margin-right: 10px;
         }
     </style>
+
+    <style>
+
+
+        /* Add this CSS code to your existing <style> section or a separate CSS file */
+
+        /* Style for error messages */
+        .error-message {
+            color: red;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        /* Style for input fields with errors */
+        input.error {
+            border: 2px solid red;
+            background-color: #ffcccc; /* Light red background */
+}
+
+
+    </style>
+
+
+
 </head>
 
 <body>
@@ -359,12 +383,16 @@
     const compYesRadio = document.getElementById("comp_yes");
     const compNoRadio = document.getElementById("comp_no");
     const companionsSection = document.getElementById('companions-section');
-    
+
     compYesRadio.addEventListener("change", function () {
         if (compYesRadio.checked) {
             companionsSection.style.display = "block";
         }
     });
+
+
+
+// Updated JavaScript code
 
     submitButton.addEventListener('click', function (event) {
         event.preventDefault(); // Prevent the default form submission
@@ -375,26 +403,26 @@
 
         requiredFields.forEach(field => {
             if (!field.value.trim()) {
-                field.classList.add('error'); // You can add a CSS class for error styling
+                field.classList.add('error'); // Add 'error' class for styling
                 isValid = false;
                 errorMessages.push(`لطفا فیلد ${field.getAttribute('name')} را پر کنید.`);
             } else {
-                field.classList.remove('error');
+                field.classList.remove('error'); // Remove 'error' class
             }
         });
 
         if (!isValid) {
             // Display error messages
             confirmationMessage.textContent = errorMessages.join('\n');
+            confirmationMessage.classList.add('error-message'); // Add 'error-message' class
             confirmationMessage.style.display = 'block';
         } else {
             // If all required fields are filled, submit the form
-            const isConfirmed = confirm('آیا می‌خواهید اطلاعات را ذخیره کنید؟');
-            if (isConfirmed) {
-                document.getElementById('guest-form').submit();
-            }
+            guestForm.submit();
         }
     });
+
+
     </script>
 
 </body>
