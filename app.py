@@ -1,7 +1,7 @@
 #fp app made by @rezamqds
 
 from flask import Flask, request, render_template
-import os, sqlite3 , connection , webbrowser
+import os, sqlite3 , webbrowser # , connection
 
 
 
@@ -24,15 +24,22 @@ def home():
 #     return render_template('t.html',name = "reza")
 
 
+
+
+
 @app.route('/data_entry')
 
 def fill_form():
-    if connection.is_internet_available():
-        return render_template('form.html')
-    else:
-        # importance to chnage dir in every pc if not using join map !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        webbrowser.open("/home/xxx/Desktop/HotelSoftware/templates/form.html")
-        return render_template('index.html')
+    return render_template('form.html')
+
+    # if connection.is_internet_available():
+    #     return render_template('form.html')
+    # else:
+    #     # importance to chnage dir in every pc if not using join map !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    #     webbrowser.open("/home/xxx/Desktop/HotelSoftware/templates/form.html")
+    #     return render_template('index.html')
+
+
 
 
 
