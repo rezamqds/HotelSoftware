@@ -89,7 +89,7 @@ def add_guest():
                 'note': request.form['f_note'],
                 }
 
-        print(form_data)
+        # print(form_data)
 
         # Connect to the database
         conn = sqlite3.connect('hotel.db')
