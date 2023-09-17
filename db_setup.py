@@ -6,6 +6,7 @@ c.execute('''
     CREATE TABLE guests (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         is_foreign BOOLEAN,           -- مسافر داخلی یا خارجی (TRUE یا FALSE)
+        relation,                     -- رابطه
         nationality TEXT,             -- ملیت
         name TEXT,                    -- نام
         last_name TEXT,               -- نام خانوادگی
@@ -28,16 +29,6 @@ c.execute('''
         note TEXT                    -- ملاحظات
     );
 ''')
-
-# c.execute('''CREATE TABLE companions (
-#     id INTEGER PRIMARY KEY AUTOINCREMENT,
-#     guest_id INTEGER,           -- شناسه مسافر مرتبط
-#     first_name TEXT,            -- نام
-#     last_name TEXT,             -- نام خانوادگی
-#     national_id TEXT,           -- کد ملی
-#     relationship TEXT,          -- نسبت
-#     gender TEXT                 -- جنسیت
-# ); ''')
 
 conn.commit()
 print ("Table created successfully")
