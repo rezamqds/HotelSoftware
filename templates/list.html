@@ -30,16 +30,38 @@
       color: #000000;
       text-decoration: none;
     }
+
+    .navbar {
+        background-color: black;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .navbar a {
+        text-decoration: none;
+        color: white;
+        margin-right: 10px;
+      }
   </style>
   <title>Guest Table</title>
 </head>
 
 <body>
+
+  <div class="navbar">
+    <a href="/">خانه</a>
+    <a href="/data_entry">افزودن</a>
+    <a href="/list">لیست میهمانان</a>
+  </div>
+  <br /><br />
+  
   <table>
     <thead>
       <tr>
         <th>ردیف</th>
         <th><a href="?sort=is_foreign">is_frg</a></th>
+        <th><a href="">نسبت</a></th>
         <th><a href="?sort=nationality">ملیت</a></th>
         <th><a href="?sort=first_name">نام</a></th>
         <th><a href="?sort=last_name">نام خانوادگی</a></th>

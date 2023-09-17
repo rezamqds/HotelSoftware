@@ -1,7 +1,7 @@
 #fp app made by @rezamqds
 
-from flask import Flask, request, render_template
-import os, sqlite3 , webbrowser # , connection
+from flask import Flask, request, render_template, redirect, url_for
+import os, sqlite3 # , webbrowser , connection
 
 
 
@@ -46,10 +46,12 @@ def fill_form():
 
 @app.route('/add_guest', methods=['POST', 'GET'])
 def add_guest():
+    isfrg = False
     if request.method == 'POST':
         if request.form['is_foreign'] == "FALSE":
             form_data = {
                 'is_foreign': 'FALSE',
+                'relation' : '',
                 'nationality': '',
                 'name': request.form['name'],
                 'last_name': request.form['last_name'],
@@ -72,8 +74,10 @@ def add_guest():
                 'note': request.form['note'],
             }
         else:
+            isfrg = True
             form_data = {
                 'is_foreign': 'TRUE',
+                'relation' : '',
                 'nationality': request.form['nationality'],
                 'name': request.form['foreign_name'],
                 'last_name': request.form['foreign_last_name'],
@@ -104,11 +108,12 @@ def add_guest():
 
         # Insert data into the "guests" table
         insert_query = """
-        INSERT INTO guests (is_foreign, nationality, name, last_name, father_name, national_id, passport_number, gender, date_of_birth, phone_number, leader_name, leader_phone, arrival_date, departure_date, occupation, residence_unit, payment_type, advance_payment, balance, total_amount, note)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO guests (is_foreign, relation , nationality, name, last_name, father_name, national_id, passport_number, gender, date_of_birth, phone_number, leader_name, leader_phone, arrival_date, departure_date, occupation, residence_unit, payment_type, advance_payment, balance, total_amount, note)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
+
         cursor.execute(insert_query, (
-            form_data['is_foreign'], form_data['nationality'], form_data['name'], form_data['last_name'], form_data['father_name'],
+            form_data['is_foreign'], form_data['relation'], form_data['nationality'], form_data['name'], form_data['last_name'], form_data['father_name'],
             form_data['national_id'], form_data['passport_number'], form_data['gender'], form_data['date_of_birth'],
             form_data['phone_number'], form_data['leader_name'], form_data['leader_phone'], form_data['arrival_date'],
             form_data['departure_date'], form_data['occupation'], form_data['residence_unit'], form_data['payment_type'],
@@ -116,9 +121,51 @@ def add_guest():
         ))
 
         conn.commit()
+        # return "Guest added successfully!"
+
+
+        # cursor.execute("SELECT last_insert_rowid()")
+        # guest_id = cursor.fetchone()[0]
+
+
+        # If the guest has companions, add them to the database
+        # companion_count = int(request.form['companion_count'])
+        try:
+            companion_count = int(request.form['companion_count'])
+        except ValueError:
+            # Handle the case where 'companion_count' is not a valid integer
+            # Return an error message or redirect the user back to the form
+            companion_count = 0
+
+
+        # Loop through each companion and insert their data into the "guests" table
+        for i in range(1, companion_count + 1):
+            companion_name = request.form.get(f'companion-name-{i}', '')
+            companion_last_name = request.form.get(f'companion-lastname-{i}', '')
+            companion_relation = request.form.get(f'companion-rel-{i}', '')
+            companion_national_id = request.form.get(f'companion-national-id-{i}', '')
+            companion_gender = request.form.get(f'companion-gender-{i}', '')
+
+            # Insert companion data into the "guests" table
+            # cursor.execute(insert_query, (form_data['is_foreign'], companion_name, companion_last_name, '', '', '', companion_relation, '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
+            
+            print(companion_name, companion_last_name, companion_relation, companion_national_id , companion_gender)
+            
+            # add isfrg for foreign and non-foreign cursors
+            cursor.execute(insert_query, (
+            form_data['is_foreign'], companion_relation, form_data['nationality'], companion_name, companion_last_name, '',
+            companion_national_id, form_data['passport_number'], companion_gender, '',
+            '', '', '', '',
+            '', '', '', '',
+            '', '', '', ''
+        ))
+
+            conn.commit()
+
+
         conn.close()
 
-        # return "Guest added successfully!"
+
 
     # return render_template('add_guest.html')
     return render_template('result.html', name=form_data["name"] , lname=form_data["last_name"])
