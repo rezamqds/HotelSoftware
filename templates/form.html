@@ -444,12 +444,26 @@
           companionCount++;
           const companionDiv = document.createElement("div");
           companionDiv.innerHTML = `
-        <h3>اطلاعات همراه ${companionCount}</h3>
-        <label for="companion-name-${companionCount}">نام:</label>
-        <input type="text" id="companion-name-${companionCount}" name="companion-name-${companionCount}" required>
-        <br>
-        <!-- Add other companion input fields here -->
-        <button type="button" class="remove-companion">حذف همراه</button>
+            <h3>اطلاعات همراه ${companionCount}</h3>
+            <label for="companion-name-${companionCount}">نام:</label>
+            <input type="text" id="companion-name-${companionCount}" name="companion-name-${companionCount}" required>
+            <br>
+            <label for="companion-lastname-${companionCount}">نام خانوادگی:</label>
+            <input type="text" id="companion-lastname-${companionCount}" name="companion-lastname-${companionCount}" required>
+            <br>
+            <label for="companion-rel-${companionCount}">نسبت:</label>
+            <input type="text" id="companion-rel-${companionCount}" name="companion-rel-${companionCount}" required>
+            <br>
+            <label for="companion-national-id-${companionCount}">کد ملی:</label>
+            <input type="text" id="companion-national-id-${companionCount}" name="companion-national-id-${companionCount}" required>
+            <br>
+            <label for="companion-gender-${companionCount}">جنسیت:</label>
+            <select id="companion-gender-${companionCount}" name="companion-gender-${companionCount}" required>
+                <option value="مرد">مرد</option>
+                <option value="زن">زن</option>
+            </select>
+            <br>
+            <button type="button" class="remove-companion">حذف همراه</button>
         `;
 
           companionsContainer.appendChild(companionDiv);
