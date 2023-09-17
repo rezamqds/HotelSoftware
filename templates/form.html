@@ -193,7 +193,7 @@
             <br><br>
             
             <label>جنسیت:</label>
-            <input type="radio" name="gender" value="مرد"> مرد
+            <input type="radio" name="gender" value="مرد" required> مرد
             <input type="radio" name="gender" value="زن"> زن
             <br><br>
 
@@ -284,147 +284,141 @@
 
 
     <script>
-        const passengerTypeRadios = document.querySelectorAll('input[name="is_foreign"]');
-        const irn = document.getElementById('irn-field');
-        const frg = document.getElementById('frg-field');
-        const shql = document.querySelector('input[name="occupation"]');
-        const ldr = document.querySelector('input[name="leader_name"]');
-        const ldr_phone = document.querySelector('input[name="leader_phone"]');
-        const f_ap = document.querySelector('input[name="f_advance_payment"]');
-        const f_bl = document.querySelector('input[name="f_balance"]');
-        const ap = document.querySelector('input[name="advance_payment"]');
-        const bl = document.querySelector('input[name="balance"]');
-        const iranianResidenceUnit = document.querySelector('select[name="residence_unit"]');
-        const foreignResidenceUnit = document.querySelector('select[name="f_residence_unit"]');
-        const f_ph = document.querySelector('input[name="f_phone_number"]');
-        const hamrah = document.getElementById('hamrah');
+const passengerTypeRadios = document.querySelectorAll('input[name="is_foreign"]');
+const irn = document.getElementById('irn-field');
+const frg = document.getElementById('frg-field');
+const shql = document.querySelector('input[name="occupation"]');
+const ldr = document.querySelector('input[name="leader_name"]');
+const ldr_phone = document.querySelector('input[name="leader_phone"]');
+const f_ap = document.querySelector('input[name="f_advance_payment"]');
+const f_bl = document.querySelector('input[name="f_balance"]');
+const ap = document.querySelector('input[name="advance_payment"]');
+const bl = document.querySelector('input[name="balance"]');
+const iranianResidenceUnit = document.querySelector('select[name="residence_unit"]');
+const foreignResidenceUnit = document.querySelector('select[name="f_residence_unit"]');
+const f_ph = document.querySelector('input[name="f_phone_number"]');
+const hamrah = document.getElementById('hamrah');
 
-        passengerTypeRadios.forEach(radio => {
-            radio.addEventListener('change', function () {
-                
-                if (this.value === 'FALSE') {
-                    // Internal 
-                    irn.style.display = 'block';
-                    frg.style.display = 'none';
-                    Array.from(irn.querySelectorAll('input')).forEach(input => input.setAttribute('required', 'required'));
-                    Array.from(frg.querySelectorAll('input')).forEach(input => input.removeAttribute('required'));
-                    shql.removeAttribute('required');
-                    ap.removeAttribute('required');
-                    bl.removeAttribute('required');
-                    foreignResidenceUnit.removeAttribute('required');
-                    f_ph.removeAttribute('required');
-                    hamrah.style.display = 'block';
-
-
-                } else if (this.value === 'TRUE') {
-                    irn.style.display = 'none';
-                    frg.style.display = 'block';
-                    Array.from(frg.querySelectorAll('input')).forEach(input => input.setAttribute('required', 'required'));
-                    Array.from(irn.querySelectorAll('input')).forEach(input => input.removeAttribute('required'));
-                    ldr.removeAttribute('required');
-                    ldr_phone.removeAttribute('required');
-                    f_ap.removeAttribute('required');
-                    f_bl.removeAttribute('required');
-                    iranianResidenceUnit.removeAttribute('required');
-                    hamrah.style.display = 'block';
-
-
+passengerTypeRadios.forEach(radio => {
+    radio.addEventListener('change', function () {
+        if (this.value === 'FALSE') {
+            // Internal 
+            irn.style.display = 'block';
+            frg.style.display = 'none';
+            Array.from(irn.querySelectorAll('input')).forEach(input => {
+                if (input.type !== 'radio' && input.type !== 'checkbox') {
+                    input.setAttribute('required', 'required');
                 }
             });
-        });
-    </script>
+            Array.from(frg.querySelectorAll('input')).forEach(input => input.removeAttribute('required'));
+            shql.removeAttribute('required');
+            ap.removeAttribute('required');
+            bl.removeAttribute('required');
+            foreignResidenceUnit.removeAttribute('required');
+            f_ph.removeAttribute('required');
+            hamrah.style.display = 'block';
+        } else if (this.value === 'TRUE') {
+            irn.style.display = 'none';
+            frg.style.display = 'block';
+            Array.from(frg.querySelectorAll('input')).forEach(input => {
+                if (input.type !== 'radio' && input.type !== 'checkbox') {
+                    input.setAttribute('required', 'required');
+                }
+            });
+            Array.from(irn.querySelectorAll('input')).forEach(input => input.removeAttribute('required'));
+            ldr.removeAttribute('required');
+            ldr_phone.removeAttribute('required');
+            f_ap.removeAttribute('required');
+            f_bl.removeAttribute('required');
+            iranianResidenceUnit.removeAttribute('required');
+            hamrah.style.display = 'block';
+        }
+    });
+});
 
+const addCompanionButton = document.getElementById('add-companion');
+const companionsContainer = document.getElementById('companions');
+const submitButton = document.getElementById('submit-button');
+const confirmationMessage = document.getElementById('confirmation-message');
+let companionCount = 0;
 
-    <script>
-
-    const addCompanionButton = document.getElementById('add-companion');
-    const companionsContainer = document.getElementById('companions');
-    const submitButton = document.getElementById('submit-button');
-    const confirmationMessage = document.getElementById('confirmation-message');
-    let companionCount = 0;
-
-    addCompanionButton.addEventListener('click', function () {
-        if (companionCount < 8) {
-            companionCount++;
-
-            const companionDiv = document.createElement('div');
-            companionDiv.innerHTML = `
-            <h3>اطلاعات همراه ${companionCount}</h3>
-            <label for="companion-name-${companionCount}">نام:</label>
-            <input type="text" id="companion-name-${companionCount}" name="companion-name-${companionCount}" required>
-            <br>
-            <label for="companion-lastname-${companionCount}">نام خانوادگی:</label>
-            <input type="text" id="companion-lastname-${companionCount}" name="companion-lastname-${companionCount}" required>
-            <br>
-            <label for="companion-rel-${companionCount}">نسبت:</label>
-            <input type="text" id="companion-rel-${companionCount}" name="companion-rel-${companionCount}" required>
-            <br>
-            <label for="companion-national-id-${companionCount}">کد ملی:</label>
-            <input type="text" id="companion-national-id-${companionCount}" name="companion-national-id-${companionCount}" required>
-            <br>
-            <label for="companion-gender-${companionCount}">جنسیت:</label>
-            <select id="companion-gender-${companionCount}" name="companion-gender-${companionCount}" required>
-                <option value="مرد">مرد</option>
-                <option value="زن">زن</option>
-            </select>
-            <br>
-            <button type="button" class="remove-companion">حذف همراه</button>
+addCompanionButton.addEventListener('click', function () {
+    if (companionCount < 8) {
+        companionCount++;
+        const companionDiv = document.createElement('div');
+        companionDiv.innerHTML = `
+        <h3>اطلاعات همراه ${companionCount}</h3>
+        <label for="companion-name-${companionCount}">نام:</label>
+        <input type="text" id="companion-name-${companionCount}" name="companion-name-${companionCount}" required>
+        <br>
+        <!-- Add other companion input fields here -->
+        <button type="button" class="remove-companion">حذف همراه</button>
         `;
 
-            companionsContainer.appendChild(companionDiv);
+        companionsContainer.appendChild(companionDiv);
 
-            const removeCompanionButton = companionDiv.querySelector('.remove-companion');
-            removeCompanionButton.addEventListener('click', function () {
-                companionCount--;
-                companionsContainer.removeChild(companionDiv);
-            });
-        } else {
-            alert('نمی‌توانید بیش از 8 همراه اضافه کنید.');
-        }
-    });
-
-    const compYesRadio = document.getElementById("comp_yes");
-    const compNoRadio = document.getElementById("comp_no");
-    const companionsSection = document.getElementById('companions-section');
-
-    compYesRadio.addEventListener("change", function () {
-        if (compYesRadio.checked) {
-            companionsSection.style.display = "block";
-        }
-    });
-
-
-
-// Updated JavaScript code
-
-    submitButton.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        let isValid = true;
-        const requiredFields = document.querySelectorAll('input[required]');
-        const errorMessages = [];
-
-        requiredFields.forEach(field => {
-            if (!field.value.trim()) {
-                field.classList.add('error'); // Add 'error' class for styling
-                isValid = false;
-                errorMessages.push(`لطفا فیلد ${field.getAttribute('name')} را پر کنید.`);
-            } else {
-                field.classList.remove('error'); // Remove 'error' class
-            }
+        const removeCompanionButton = companionDiv.querySelector('.remove-companion');
+        removeCompanionButton.addEventListener('click', function () {
+            companionCount--;
+            companionsContainer.removeChild(companionDiv);
         });
+    } else {
+        alert('نمی‌توانید بیش از 8 همراه اضافه کنید.');
+    }
+});
 
-        if (!isValid) {
-            // Display error messages
-            confirmationMessage.textContent = errorMessages.join('\n');
-            confirmationMessage.classList.add('error-message'); // Add 'error-message' class
-            confirmationMessage.style.display = 'block';
+const compYesRadio = document.getElementById("comp_yes");
+const compNoRadio = document.getElementById("comp_no");
+const companionsSection = document.getElementById('companions-section');
+
+compYesRadio.addEventListener("change", function () {
+    if (compYesRadio.checked) {
+        companionsSection.style.display = "block";
+    }
+});
+
+// ...
+
+submitButton.addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    let isValid = true;
+    const requiredFields = document.querySelectorAll('input[required], select[required]');
+    const errorMessages = [];
+
+    requiredFields.forEach(field => {
+        if (field.type === 'radio') {
+            // Check if at least one radio button in the group is selected
+            const radioGroup = document.querySelectorAll(`input[name="${field.name}"]`);
+            const isSelected = Array.from(radioGroup).some(radio => radio.checked);
+            if (!isSelected) {
+                isValid = false;
+                errorMessages.push(`لطفا یکی از گزینه‌های ${field.name} را انتخاب کنید.`);
+            }
+        } else if (!field.value.trim()) {
+            field.classList.add('error'); // Add 'error' class for styling
+            isValid = false;
+            errorMessages.push(`لطفا فیلد ${field.getAttribute('name')} را پر کنید.`);
         } else {
+            field.classList.remove('error'); // Remove 'error' class
+        }
+    });
+
+    if (!isValid) {
+        // Display error messages
+        confirmationMessage.textContent = errorMessages.join('\n');
+        confirmationMessage.classList.add('error-message'); // Add 'error-message' class
+        confirmationMessage.style.display = 'block';
+    } else {
         // If all required fields are filled, submit the form
         const guestForm = document.getElementById('guest-form'); // Get the form element
         guestForm.submit(); // Submit the form
     }
-    });
+});
+
+// ...
+
+
 
 
     </script>
