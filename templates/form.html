@@ -459,11 +459,13 @@
             <br>
             <label for="companion-gender-${companionCount}">جنسیت:</label>
             <select id="companion-gender-${companionCount}" name="companion-gender-${companionCount}" required>
+                <option value="" disabled selected>انتخاب کنید</option>
                 <option value="مرد">مرد</option>
                 <option value="زن">زن</option>
             </select>
-            <br>
+            <br><br>
             <button type="button" class="remove-companion">حذف همراه</button>
+            <br><br>
         `;
 
           companionsContainer.appendChild(companionDiv);
