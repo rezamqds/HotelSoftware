@@ -4,9 +4,13 @@ from flask import Flask, request, render_template, redirect, url_for
 import os, sqlite3 # , webbrowser , connection
 
 
+# path = os.path.dirname(os.path.realpath(__name__))
+path = os.path.join(os.getcwd())
+dbpath = f'{path}/files/gs.mqds'
+
 
 # os.path.join(os.getcwd()
-# static_directory = os.path.join(os.getcwd(), 'static')
+# static_directory = os.path.join(os.getcwd())
 # form_dir = os.path.join(static_directory, 'form.html')
 
 
@@ -103,7 +107,7 @@ def add_guest():
         # print(form_data)
 
         # Connect to the database
-        conn = sqlite3.connect('hotel.db')
+        conn = sqlite3.connect(dbpath)
         cursor = conn.cursor()
 
         # Insert data into the "guests" table
@@ -182,7 +186,7 @@ def add_guest():
 
 @app.route('/list', methods=['GET'])
 def get_guests():
-    conn = sqlite3.connect('hotel.db')
+    conn = sqlite3.connect(dbpath)
     c = conn.cursor()
     c.execute("SELECT * FROM guests")
     guests = c.fetchall()

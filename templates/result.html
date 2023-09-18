@@ -2,9 +2,30 @@
 <html>
    <head>
       <meta http-equiv="refresh" content="10; url=/" />
+      <style>
+         .navbar {
+             background-color: black;
+             padding: 10px;
+             display: flex;
+             justify-content: space-between;
+           }
+     
+           .navbar a {
+             text-decoration: none;
+             color: white;
+             margin-right: 10px;
+           }
+           </style>
    </head>
    <body>
       
+  <div class="navbar">
+   <a href="/">خانه</a>
+   <a href="/data_entry">افزودن</a>
+   <a href="/list">لیست میهمانان</a>
+ </div>
+ <br /><br />
+ 
       <p style="text-align:center;">اطلاعات <span style="color: red;">{{ name }} {{ lname }}</span> به درستی به سامانه اضافه گردید</p>
       <h2 style="text-align:center;"><a href = "\">بازگشت به صفحه اصلی</a></h2>
       <h4 style="text-align:center;">به صورت خودکار بعد از ۱۰ ثانیه به صفحه اصلی منتقل خواهید شد</h4>
