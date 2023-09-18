@@ -145,6 +145,7 @@ def add_guest():
             companion_relation = request.form.get(f'companion-rel-{i}', '')
             companion_national_id = request.form.get(f'companion-national-id-{i}', '')
             companion_gender = request.form.get(f'companion-gender-{i}', '')
+            note_for_comp = f"{companion_relation} - {form_data['name']} {form_data['last_name']} با شناسه : {form_data['national_id']} {form_data['passport_number']}"
 
             # Insert companion data into the "guests" table
             # cursor.execute(insert_query, (form_data['is_foreign'], companion_name, companion_last_name, '', '', '', companion_relation, '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
@@ -157,7 +158,7 @@ def add_guest():
             companion_national_id, form_data['passport_number'], companion_gender, '',
             '', '', '', '',
             '', '', '', '',
-            '', '', '', ''
+            '', '', '', note_for_comp
         ))
 
             conn.commit()
