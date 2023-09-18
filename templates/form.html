@@ -467,8 +467,7 @@
             </select>
             <br><br>
             <button type="button" class="remove-companion">حذف همراه</button>
-            <br><br>
-        `;
+            <br><br>`;
 
           companionsContainer.appendChild(companionDiv);
 
@@ -478,7 +477,11 @@
             companionCount--;
             companionsContainer.removeChild(companionDiv);
           });
-        } else {
+        
+        
+          document.querySelector('input[name="companion_count"]').value = companionCount;
+        }
+        else {
           alert("نمی‌توانید بیش از 8 همراه اضافه کنید.");
         }
       });
