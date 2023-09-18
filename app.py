@@ -7,7 +7,7 @@ import os, sqlite3 # , webbrowser , connection
 # path = os.path.dirname(os.path.realpath(__name__))
 path = os.path.join(os.getcwd())
 dbpath = f'{path}/files/gs.mqds'
-
+# print(dbpath)
 
 # os.path.join(os.getcwd()
 # static_directory = os.path.join(os.getcwd())
@@ -195,4 +195,4 @@ def get_guests():
 
 if __name__ == '__main__':
     # app.run(debug=True)
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=7331)
