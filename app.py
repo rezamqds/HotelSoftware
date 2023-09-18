@@ -52,7 +52,7 @@ def add_guest():
             form_data = {
                 'is_foreign': 'ایرانی',
                 'relation' : '',
-                'nationality': '',
+                'nationality': 'ایرانی',
                 'name': request.form['name'],
                 'last_name': request.form['last_name'],
                 'father_name': request.form['father_name'],
@@ -150,7 +150,7 @@ def add_guest():
             # Insert companion data into the "guests" table
             # cursor.execute(insert_query, (form_data['is_foreign'], companion_name, companion_last_name, '', '', '', companion_relation, '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
             
-            print(companion_name, companion_last_name, companion_relation, companion_national_id , companion_gender)
+            # print(companion_name, companion_last_name, companion_relation, companion_national_id , companion_gender)
             
             # add isfrg for foreign and non-foreign cursors!!!!
             if isfrg == True:
