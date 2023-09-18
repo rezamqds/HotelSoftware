@@ -50,7 +50,7 @@ def add_guest():
     if request.method == 'POST':
         if request.form['is_foreign'] == "FALSE":
             form_data = {
-                'is_foreign': 'FALSE',
+                'is_foreign': 'ایرانی',
                 'relation' : '',
                 'nationality': '',
                 'name': request.form['name'],
@@ -76,7 +76,7 @@ def add_guest():
         else:
             isfrg = True
             form_data = {
-                'is_foreign': 'TRUE',
+                'is_foreign': 'خارجی',
                 'relation' : '',
                 'nationality': request.form['nationality'],
                 'name': request.form['foreign_name'],
@@ -111,7 +111,7 @@ def add_guest():
         INSERT INTO guests (is_foreign, relation , nationality, name, last_name, father_name, national_id, passport_number, gender, date_of_birth, phone_number, leader_name, leader_phone, arrival_date, departure_date, occupation, residence_unit, payment_type, advance_payment, balance, total_amount, note)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
-
+        # 22 items
         cursor.execute(insert_query, (
             form_data['is_foreign'], form_data['relation'], form_data['nationality'], form_data['name'], form_data['last_name'], form_data['father_name'],
             form_data['national_id'], form_data['passport_number'], form_data['gender'], form_data['date_of_birth'],
@@ -152,14 +152,22 @@ def add_guest():
             
             print(companion_name, companion_last_name, companion_relation, companion_national_id , companion_gender)
             
-            # add isfrg for foreign and non-foreign cursors
-            cursor.execute(insert_query, (
-            form_data['is_foreign'], companion_relation, form_data['nationality'], companion_name, companion_last_name, '',
-            companion_national_id, form_data['passport_number'], companion_gender, '',
-            '', '', '', '',
-            '', '', '', '',
-            '', '', '', note_for_comp
-        ))
+            # add isfrg for foreign and non-foreign cursors!!!!
+            if isfrg == True:
+                cursor.execute(insert_query, (
+                form_data['is_foreign'], companion_relation, form_data['nationality'], companion_name, companion_last_name, '',
+                '', companion_national_id, companion_gender, '',
+                '', '', '', '',
+                '', '', form_data['residence_unit'], '',
+                '', '', '', note_for_comp))
+
+            else:
+                cursor.execute(insert_query, (
+                form_data['is_foreign'], companion_relation, 'ایرانی', companion_name, companion_last_name, '',
+                companion_national_id, '', companion_gender, '',
+                '', '', '', '',
+                '', '', form_data['residence_unit'], '',
+                '', '', '', note_for_comp))
 
             conn.commit()
 

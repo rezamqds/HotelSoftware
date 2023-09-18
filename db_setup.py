@@ -5,7 +5,7 @@ c = conn.cursor()
 c.execute('''
     CREATE TABLE guests (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        is_foreign BOOLEAN,           -- مسافر داخلی یا خارجی (TRUE یا FALSE)
+        is_foreign TEXT,              -- مسافر داخلی یا خارجی
         relation,                     -- رابطه
         nationality TEXT,             -- ملیت
         name TEXT,                    -- نام
@@ -26,7 +26,7 @@ c.execute('''
         advance_payment REAL,         -- پیش پرداخت
         balance REAL,                 -- مانده
         total_amount REAL,            -- مبلغ کل
-        note TEXT                    -- ملاحظات
+        note TEXT                     -- ملاحظات
     );
 ''')
 
