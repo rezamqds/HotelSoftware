@@ -490,8 +490,14 @@
       const companionsSection = document.getElementById("companions-section");
 
       compYesRadio.addEventListener("change", function () {
-        if (compYesRadio.checked) {
-          companionsSection.style.display = "block";
+      if (compYesRadio.checked) {
+        companionsSection.style.display = "block";
+        }
+      });
+
+      compNoRadio.addEventListener("change", function () {
+      if (compNoRadio.checked) {
+        companionsSection.style.display = "none";
         }
       });
 
