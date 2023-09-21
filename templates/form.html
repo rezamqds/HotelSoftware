@@ -190,6 +190,7 @@
         <input type="radio" name="payment_type" value="کارت" />کارت
         <input type="radio" name="payment_type" value="جاباما" />جاباما
         <input type="radio" name="payment_type" value="اسنپ تریپ" />اسنپ تریپ
+        <input type="radio" name="payment_type" value="سایر">سایر
         <br /><br />
 
         <label>پیش پرداخت:</label>
@@ -314,7 +315,10 @@
         <br /><br />
 
         <label>نوع پرداخت:</label>
-        <input type="text" name="f_payment_type" required autocomplete="off" />
+        <!-- <input type="text" name="f_payment_type" required autocomplete="off" /> -->
+        <input type="radio" name="f_payment_type" value="نقدی" required />نقدی
+        <input type="radio" name="f_payment_type" value="کارت" />کارت
+        <input type="radio" name="f_payment_type" value="سایر" />سایر
         <br /><br />
 
         <label>پیش پرداخت:</label>
