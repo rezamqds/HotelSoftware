@@ -207,7 +207,15 @@
         <br /><br />
 
         <label>مبلغ کل:</label>
-        <input type="number" name="total_amount" required autocomplete="off" />
+        <input type="number" name="total_amount"
+        class="form-control form-control-lg ltr text-center number-separator number-only" 
+        id = "number"
+        placeholder="عدد مورد نظر را وارد کنید"
+        autocomplete="off"
+        oninput="calc()"
+       required autocomplete="off" />
+        
+        <div class="alert result-tools" id="word"></div>
         <br /><br />
 
         <label>یادداشت:</label>
@@ -243,9 +251,8 @@
 
         <label>تاریخ تولد:</label>
         <input
-          type="text"
+          type="date"
           name="f_date_of_birth"
-          data-jdp
           required
           autocomplete="off"
           placeholder="کلیک کنید - فرمت : 0000/00/00"
@@ -338,9 +345,16 @@
         <input
           type="number"
           name="f_total_amount"
+          class="form-control form-control-lg ltr text-center number-separator number-only" 
+          id = "number"
+          placeholder="عدد مورد نظر را وارد کنید"
+          autocomplete="off"
+          oninput="calc()"
           required
           autocomplete="off"
         />
+      <div class="alert result-tools" id="word"></div>
+
         <br /><br />
 
         <label>یادداشت:</label>
@@ -562,5 +576,27 @@
       jalaliDatepicker.startWatch();
     </script>
     <!-- dp -->
+
+
+
+
+
+<!-- adad be horof -->
+<!-- <script src="https://navidak.ir/assets/main/js/main.js?v=2.3.5"></script>
+<script src="https://navidak.ir/assets/js/number-separator.js?v=2.3.5"></script>
+<script src="https://navidak.ir/assets/js/num2word.js?v=2.3.5"></script>
+<script src="https://navidak.ir/assets/tools/js/num-to-word.js?v=2.3.5"></script> -->
+
+<script src="./static/n2w/jquery.min.js"></script>
+<script src="./static/n2w/main.js"></script>
+<script src="./static/n2w/num-to-word.js"></script>
+<script src="./static/n2w/number-separator.js"></script>
+<script src="./static/n2w/num2word.js"></script>
+
+
+<!-- adad be horof -->
+
+
+
   </body>
 </html>
