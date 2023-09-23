@@ -197,25 +197,26 @@
         <input
           type="number"
           name="advance_payment"
+          class="number-separator"
           required
           autocomplete="off"
         />
         <br /><br />
 
         <label>مانده:</label>
-        <input type="number" name="balance" required autocomplete="off" />
+        <input type="number" name="balance" required autocomplete="off" class="number-separator" />
         <br /><br />
 
         <label>مبلغ کل:</label>
         <input type="number" name="total_amount"
         class="form-control form-control-lg ltr text-center number-separator number-only" 
         id = "number"
-        placeholder="عدد مورد نظر را وارد کنید"
+        placeholder=""
         autocomplete="off"
         oninput="calc()"
-       required autocomplete="off" />
+        required autocomplete="off" />
         
-        <div class="alert result-tools" id="word"></div>
+        <div class="alert result-tools" id="word" style="color: rgb(255, 163, 163);"></div>
         <br /><br />
 
         <label>یادداشت:</label>
@@ -332,13 +333,14 @@
         <input
           type="number"
           name="f_advance_payment"
+          class="number-separator"
           required
           autocomplete="off"
         />
         <br /><br />
 
         <label>مانده:</label>
-        <input type="number" name="f_balance" required autocomplete="off" />
+        <input type="number" name="f_balance" required autocomplete="off" class="number-separator"/>
         <br /><br />
 
         <label>مبلغ کل:</label>
@@ -346,14 +348,22 @@
           type="number"
           name="f_total_amount"
           class="form-control form-control-lg ltr text-center number-separator number-only" 
-          id = "number"
-          placeholder="عدد مورد نظر را وارد کنید"
+          id = "num"
+          placeholder=""
           autocomplete="off"
-          oninput="calc()"
+          oninput="cal()"
           required
           autocomplete="off"
         />
-      <div class="alert result-tools" id="word"></div>
+        <div class="alert result-tools" id="w" style="color: rgb(255, 163, 163);"></div>
+        <script>function cal() {
+          var n = checkNumberToEn($("#num").val().split(",").join(""));
+          if (n) {
+            var a = Num2persian(n);
+            $("#w").text(a + " تومان "), $("#show").removeClass("d-none");
+          }
+        }
+        </script>
 
         <br /><br />
 
@@ -482,7 +492,7 @@
                 <option value="مرد">مرد</option>
                 <option value="زن">زن</option>
             </select>
-            <br><br>
+            <p style="color: rgb(255, 122, 122);">پر کردن تمامی موارد فوق الزامی میباشد. در صورت نیاز به اضافه کردن همراه دیگر مجددا دکمه "افزودن همراه" بالا را کلیک کنید</p>
             <button type="button" class="remove-companion">حذف همراه</button>
             <br><br>`;
 
@@ -576,7 +586,6 @@
       jalaliDatepicker.startWatch();
     </script>
     <!-- dp -->
-
 
 
 
