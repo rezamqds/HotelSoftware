@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>مدیریت اتاق‌ها</h1>
+
+<div style="margin-bottom: 20px;">
+    <a href="/rooms/add" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">افزودن اتاق جدید</a>
+</div>
+
+<table style="width: 100%; border-collapse: collapse; background-color: #d7d6ff;">
+    <thead>
+        <tr style="background-color: rgb(152, 96, 255); color: white;">
+            <th>شماره اتاق</th>
+            <th>نوع اتاق</th>
+            <th>ظرفیت</th>
+            <th>قیمت هر شب</th>
+            <th>وضعیت</th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for room in rooms %}
+        <tr>
+            <td>{{ room.room_number }}</td>
+            <td>{{ room.room_type }}</td>
+            <td>{{ room.capacity }}</td>
+            <td>{{ "{:,.0f}".format(room.price_per_night) }} تومان</td>
+            <td>
+                {% if room.is_available %}
+                    <span style="color: green;">قابل رزرو</span>
+                {% else %}
+                    <span style="color: red;">رزرو شده</span>
+                {% endif %}
+            </td>
+            <td>
+                <a href="/rooms/{{ room.id }}" style="color: #000; margin-left: 10px;">مشاهده</a>
+                <a href="/rooms/{{ room.id }}/edit" style="color: #000; margin-left: 10px;">ویرایش</a>
+                <form action="/rooms/{{ room.id }}/delete" method="POST" style="display: inline;" onsubmit="return confirm('آیا مطمئن هستید؟');">
+                    <button type="submit" style="background: none; border: none; color: red; cursor: pointer;">حذف</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if not rooms %}
+<p style="text-align: center; margin-top: 20px;">هیچ اتاقی ثبت نشده است.</p>
+{% endif %}
+{% endblock %}

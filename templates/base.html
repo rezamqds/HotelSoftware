@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    <title>{{ title if title else 'سیستم مدیریت هتل' }}</title>
     <style>
-        /* Add this style to add lines between table rows */
         tr {
             border-bottom: 1px solid #444;
         }
@@ -23,7 +22,7 @@
         th,
         td {
             padding: 8px;
-            text-align: left;
+            text-align: right;
             border-bottom: 1px solid #444;
         }
 
@@ -35,40 +34,99 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0; 
+            padding: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            min-height: 100vh; 
+            min-height: 100vh;
         }
 
         .navbar {
             background-color: rgb(152, 96, 255);
-            padding: 10px;
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .navbar a {
             text-decoration: none;
             color: white;
-            margin-right: 10px;
+            margin-left: 20px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            flex: 1;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .flash-messages {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .flash {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .flash.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .flash.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        footer {
+            padding: 20px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <a href="/">خانه</a>
-        <span> | </span>
-        <a href="/data_entry">افزودن</a>
-        <span> | </span>
-        <a href="/list">لیست</a>
-
+        <div>
+            <a href="/">خانه</a>
+            <a href="/data_entry">افزودن مسافر</a>
+            <a href="/list">لیست مسافران</a>
+            <a href="/rooms">اتاق‌ها</a>
+        </div>
+        <div style="color: white;">
+            سیستم مدیریت هتل
+        </div>
     </div>
+
+    <div class="content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
     <footer>
-        <br>
-        <br>
         <br>
         <br>
     </footer>

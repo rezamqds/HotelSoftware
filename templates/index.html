@@ -1,65 +1,25 @@
-<!DOCTYPE html>
-<html dir="rtl" lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Html {{name}}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffe0e0;
-            margin: 0;
-            padding: 0; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; 
-        }
+{% extends "base.html" %}
 
-        h1 {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            margin: 0;
-        }
+{% block content %}
+<div style="text-align: center; padding: 50px 20px;">
+    <h1 style="background-color: #333; color: #fff; padding: 20px; border-radius: 10px;">
+        سلام به سیستم ذخیره اطلاعات هتل خوش آمدید
+    </h1>
 
-        .navbar {
-            background-color: #d0d400;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .navbar a {
-            text-decoration: none;
-            color: #ff0000;
-            margin: 0 10px;
-            padding: 5px 10px; /* اضافه کردن پدینگ به لینک‌ها */
-        }
-
-        hr {
-            border: 1px solid #ddd;
-        }
-    </style>
-</head>
-<body>
-    <h1>سلام به سیستم ذخیره اطلاعات سران خوش آمدید</h1>
-
-    <div class="navbar">
-        <a href="/data_entry">اضافه کردن میهمان</a>
-        
-        <span>|</span>
-        
-        <a href="/list">لیست میهمانان</a>
-        <!-- <a href="/test">TESTURL</a> -->
-        {{test}}
+    <div style="margin-top: 30px;">
+        <a href="/data_entry" style="background-color: #9860ff; color: white; padding: 15px 40px; text-decoration: none; border-radius: 10px; margin: 10px; display: inline-block;">
+            اضافه کردن مسافر
+        </a>
+        <a href="/list" style="background-color: #9860ff; color: white; padding: 15px 40px; text-decoration: none; border-radius: 10px; margin: 10px; display: inline-block;">
+            لیست مسافران
+        </a>
+        <a href="/rooms" style="background-color: #9860ff; color: white; padding: 15px 40px; text-decoration: none; border-radius: 10px; margin: 10px; display: inline-block;">
+            مدیریت اتاق‌ها
+        </a>
     </div>
-    <footer>
-        <br>
-        <br>
-        <br>
-        <br>
-        <!-- <p>made with love by <a href="https://github.com/rezamqds">@rezamqds</a></p> -->
-    </footer>
-</body>
-</html>
+
+    <p style="margin-top: 30px; color: #666;">
+        سامانه مدیریت اطلاعات مسافران هتل
+    </p>
+</div>
+{% endblock %}

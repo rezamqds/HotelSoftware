@@ -1,163 +1,67 @@
-<!DOCTYPE html>
-<html dir="rtl" lang="fa">
+{% extends "base.html" %}
 
-<head>
-  <title>لیست گزارش کلی میهمانان</title>
-  <style>
-    table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+{% block content %}
+<h1>لیست مسافران</h1>
 
-  th, td {
-    padding: 8px;
-    border: 1px solid #ddd;
-    text-align: center;
-  }
+<div style="margin-bottom: 20px;">
+    <form action="/list" method="GET" style="display: inline-block;">
+        <input type="text" name="search" value="{{ search if search else '' }}" placeholder="جستجو بر اساس نام، کد ملی یا پاسپورت..." style="padding: 10px; width: 400px; border: 1px solid #ccc; border-radius: 5px;">
+        <button type="submit" style="background-color: #2196F3; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">جستجو</button>
+        {% if search %}
+            <a href="/list" style="margin-right: 10px;">پاک کردن فیلتر</a>
+        {% endif %}
+    </form>
+</div>
 
-  thead th {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    background-color: #f2f2f2;
-  }
-  
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-  
-    tr:hover {
-      background-color: #ddd;
-    }
-
-    a {
-      color: #000000;
-      text-decoration: none;
-    }
-
-    .navbar {
-        background-color: black;
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .navbar a {
-        text-decoration: none;
-        color: white;
-        margin-right: 10px;
-      }
-      
-      #scrollToBottomButton {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #007bff6b; /* Change to your desired background color */
-  color: #ff0000; /* Change to your desired text color */
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-
-#scrollToBottomButton:hover {
-  background-color: #0056b3; /* Change to your desired hover background color */
-}
-
-
-
-  </style>
-  <title>Guest Table</title>
-</head>
-
-<body>
-
-  <div class="navbar">
-    <a href="/">خانه</a>
-    <a href="/data_entry">افزودن</a>
-    <a href="/list">لیست میهمانان</a>
-  </div>
-  <br /><br />
-  
-  <button id="scrollToBottomButton">انتهای صفحه</button>
-
-
-  <table>
+<table style="width: 100%; direction: rtl;">
     <thead>
-      <tr>
-        <th>ردیف</th>
-        <th>نوع</th>
-        <th>نسبت</th>
-        <th>ملیت</th>
-        <th>نام</th>
-        <th>نام خانوادگی</th>
-        <th>نام پدر</th>
-        <th>کد ملی</th>
-        <th>شماره پاسپورت</th>
-        <th>جنسیت</th>
-        <th>تاریخ تولد</th>
-        <th>تلفن</th>
-        <th>ورود</th>
-        <th>خروج</th>
-        <th>واحد</th>
-        <th>لیدر</th>
-        <th>تلفن لیدر</th>        
-        <th>شغل</th>
-        <th>پرداخت</th>
-        <th>پیش</th>
-        <th>مانده</th>
-        <th>کل</th>
-        <th>یادداشت</th>
-      </tr>
+        <tr style="background-color: rgb(152, 96, 255); color: white;">
+            <th>ردیف</th>
+            <th>نوع</th>
+            <th>نام</th>
+            <th>نام خانوادگی</th>
+            <th>کد ملی/پاسپورت</th>
+            <th>تلفن</th>
+            <th>ورود</th>
+            <th>خروج</th>
+            <th>اتاق</th>
+            <th>عملیات</th>
+        </tr>
     </thead>
     <tbody>
-      {% for guest in guests %}
-      <tr>
-        <td>{{ loop.index }}</td>
-        <td>{{ guest[1] }}</td>
-        <td>{{ guest[2] }}</td>
-        <td>{{ guest[3] }}</td>
-        <td>{{ guest[4] }}</td>
-        <td>{{ guest[5] }}</td>
-        <td>{{ guest[6] }}</td>
-        <td>{{ guest[7] }}</td>
-        <td>{{ guest[8] }}</td>
-        <td>{{ guest[9] }}</td>
-        <td>{{ guest[10] }}</td>
-        <td>{{ guest[11] }}</td>
-        <td>{{ guest[12] }}</td>
-        <td>{{ guest[13] }}</td>
-        <td>{{ guest[14] }}</td>
-        <td>{{ guest[15] }}</td>
-        <td>{{ guest[16] }}</td>
-        <td>{{ guest[17] }}</td>
-        <td>{{ guest[18] }}</td>
-        <td>{{ guest[19] }}</td>
-        <td>{{ guest[20] }}</td>
-        <td>{{ guest[21] }}</td>
-        <td>{{ guest[22] }}</td>
-      </tr>
-      {% endfor %}
+        {% for guest in guests %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ guest.is_foreign }}</td>
+            <td>{{ guest.name }}</td>
+            <td>{{ guest.last_name }}</td>
+            <td>{{ guest.national_id if guest.national_id else guest.passport_number }}</td>
+            <td>{{ guest.phone_number }}</td>
+            <td>{{ guest.arrival_date }}</td>
+            <td>{{ guest.departure_date }}</td>
+            <td>{{ guest.room_number if guest.room_number else '-' }}</td>
+            <td>
+                <a href="/guest/{{ guest.id }}" style="color: #000;">مشاهده</a>
+                <a href="/guest/{{ guest.id }}/edit" style="color: #000; margin-right: 10px;">ویرایش</a>
+            </td>
+        </tr>
+        {% endfor %}
     </tbody>
-  </table>
+</table>
 
-  <script>
+{% if not guests %}
+<p style="text-align: center; margin-top: 20px;">هیچ مسافری یافت نشد.</p>
+{% endif %}
+
+<script>
     document.addEventListener("DOMContentLoaded", function() {
-      const scrollToBottomButton = document.getElementById("scrollToBottomButton");
-    
-      scrollToBottomButton.addEventListener("click", function() {
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: "smooth"
+        // Auto-hide flash messages after 5 seconds
+        const flashes = document.querySelectorAll('.flash');
+        flashes.forEach(flash => {
+            setTimeout(() => {
+                flash.style.display = 'none';
+            }, 5000);
         });
-      });
     });
-    </script>
-    
-
-
-</body>
-
-</html>
+</script>
+{% endblock %}

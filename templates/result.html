@@ -1,34 +1,32 @@
-<!doctype html>
-<html>
-   <head>
-      <meta http-equiv="refresh" content="10; url=/" />
-      <style>
-         .navbar {
-             background-color: black;
-             padding: 10px;
-             display: flex;
-             justify-content: space-between;
-           }
-     
-           .navbar a {
-             text-decoration: none;
-             color: white;
-             margin-right: 10px;
-           }
-           </style>
-   </head>
-   <body>
-      
-  <div class="navbar">
-   <a href="/">خانه</a>
-   <a href="/data_entry">افزودن</a>
-   <a href="/list">لیست میهمانان</a>
- </div>
- <br /><br />
- 
-      <p style="text-align:center;">اطلاعات <span style="color: red;">{{ name }} {{ lname }}</span> به درستی به سامانه اضافه گردید</p>
-      <h2 style="text-align:center;"><a href = "\">بازگشت به صفحه اصلی</a></h2>
-      <h4 style="text-align:center;">به صورت خودکار بعد از ۱۰ ثانیه به صفحه اصلی منتقل خواهید شد</h4>
-      
-   </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<div style="text-align: center; padding: 50px 20px;">
+    <h1 style="color: #155724;">ثبت موفق</h1>
+
+    <p style="font-size: 18px; margin: 30px 0;">
+        اطلاعات
+        <span style="color: red; font-weight: bold;">{{ name }} {{ lname }}</span>
+        به درستی به سامانه اضافه گردید
+    </p>
+
+    <div style="margin-top: 40px;">
+        <a href="/" style="background-color: #9860ff; color: white; padding: 15px 40px; text-decoration: none; border-radius: 10px; margin: 10px; display: inline-block;">
+            بازگشت به صفحه اصلی
+        </a>
+        <a href="/data_entry" style="background-color: #4CAF50; color: white; padding: 15px 40px; text-decoration: none; border-radius: 10px; margin: 10px; display: inline-block;">
+            ثبت مسافر جدید
+        </a>
+    </div>
+
+    <p style="color: #666; margin-top: 30px;">
+        به صورت خودکار بعد از ۱۰ ثانیه به صفحه اصلی منتقل خواهید شد
+    </p>
+</div>
+
+<script>
+    setTimeout(function() {
+        window.location.href = "/";
+    }, 10000);
+</script>
+{% endblock %}
