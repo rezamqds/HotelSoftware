@@ -1,0 +1,19 @@
+[MASTER]
+# Missing module/function/class docstrings: this codebase keeps docstrings light.
+# Intentional structural warnings:
+#   - R0401 (cyclic-import): Flask blueprint pattern (routes import `main` from
+#     their package) triggers this; it is safe at runtime.
+#   - R0903 (too-few-public-methods): config classes are attribute holders.
+#   - C0413 (wrong-import-position): scripts use `sys.path.insert` before app imports.
+#   - R0914 (too-many-locals): one-off migration script readability.
+#   - C0103 (invalid-name): `bind`/`workers` are required by Gunicorn as-is.
+#   - C0415 (import-outside-toplevel): imported inside the app factory on purpose.
+#   - W0613 (unused-argument): Flask error handlers take `error` by signature.
+#   - W0718 (broad-exception-caught): routes catch Exception to flash+redirect.
+disable=missing-docstring,mixed-line-endings,R0401,R0903,C0413,R0914,C0103,C0415,W0613,W0718
+
+[FORMAT]
+max-line-length=100
+
+[MESSAGES CONTROL]
+# Keep enabled: unused-import, undefined-variable, syntax-errors, etc.
