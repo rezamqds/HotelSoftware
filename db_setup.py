@@ -1,36 +1,15 @@
-import sqlite3
-conn = sqlite3.connect('hotel.db')
-c = conn.cursor()
+#!/usr/bin/env python
+"""Initialize database (legacy command name).
 
-c.execute('''
-    CREATE TABLE guests (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        is_foreign TEXT,              -- مسافر داخلی یا خارجی
-        relation,                     -- رابطه
-        nationality TEXT,             -- ملیت
-        name TEXT,                    -- نام
-        last_name TEXT,               -- نام خانوادگی
-        father_name TEXT,             -- نام پدر
-        national_id TEXT,             -- کد ملی (فقط برای مسافران داخلی)
-        passport_number TEXT,         -- شماره گذرنامه (فقط برای مسافران خارجی)
-        gender TEXT,                  -- جنسیت
-        date_of_birth TEXT,           -- تاریخ تولد
-        phone_number TEXT,            -- تلفن همراه یا ثابت
-        arrival_date TEXT,            -- تاریخ ورود
-        departure_date TEXT,          -- تاریخ خروج
-        residence_unit TEXT,          -- نام واحد اقامتی        
-        leader_name TEXT,             -- نام لیدر
-        leader_phone TEXT,            -- تلفن لیدر
-        occupation TEXT,              -- شغل
-        payment_type TEXT,            -- نوع پرداخت
-        advance_payment REAL,         -- پیش پرداخت
-        balance REAL,                 -- مانده
-        total_amount REAL,            -- مبلغ کل
-        note TEXT                     -- ملاحظات
-    );
-''')
+Deprecated: prefer `python init_db.py` or `python init_db.py --reset`.
+Kept as a thin wrapper so existing muscle memory / docs keep working.
+"""
+import sys
+import os
 
-conn.commit()
-print ("Table created successfully")
-conn.close()
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import init_db  # noqa: E402
+
+if __name__ == '__main__':
+    init_db.main()
