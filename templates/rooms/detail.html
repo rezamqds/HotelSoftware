@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>جزئیات اتاق {{ room.room_number }}</h1>
+
+<div style="max-width: 600px; margin: 0 auto; background-color: #d7d6ff; padding: 20px; border-radius: 10px;">
+    <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+            <td style="padding: 10px; font-weight: bold;">شماره اتاق:</td>
+            <td style="padding: 10px;">{{ room.room_number }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; font-weight: bold;">نوع اتاق:</td>
+            <td style="padding: 10px;">{{ room.room_type }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; font-weight: bold;">ظرفیت:</td>
+            <td style="padding: 10px;">{{ room.capacity }} نفر</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; font-weight: bold;">قیمت هر شب:</td>
+            <td style="padding: 10px;">{{ "{:,.0f}".format(room.price_per_night) }} تومان</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; font-weight: bold;">وضعیت:</td>
+            <td style="padding: 10px;">
+                {% if room.is_available %}
+                    <span style="color: green; font-weight: bold;">قابل رزرو</span>
+                {% else %}
+                    <span style="color: red; font-weight: bold;">رزرو شده</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% if room.description %}
+        <tr>
+            <td style="padding: 10px; font-weight: bold;">توضیحات:</td>
+            <td style="padding: 10px;">{{ room.description }}</td>
+        </tr>
+        {% endif %}
+    </table>
+
+    <div style="margin-top: 20px;">
+        <a href="/rooms/{{ room.id }}/edit" style="background-color: #2196F3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">ویرایش</a>
+        <a href="/rooms" style="color: #000; margin-right: 20px;">بازگشت به لیست</a>
+    </div>
+</div>
+{% endblock %}

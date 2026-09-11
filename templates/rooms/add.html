@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>افزودن اتاق جدید</h1>
+
+<form action="/rooms/add" method="POST" style="max-width: 500px; margin: 0 auto;">
+    <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px;">شماره اتاق: *</label>
+        <input type="text" name="room_number" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px;">نوع اتاق: *</label>
+        <select name="room_type" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+            <option value="">انتخاب کنید</option>
+            <option value="تک نفره">تک نفره</option>
+            <option value="دو نفره">دو نفره</option>
+            <option value="سوئیت">سوئیت</option>
+            <option value="خانوادگی">خانوادگی</option>
+            <option value="لوکس">لوکس</option>
+        </select>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px;">ظرفیت: *</label>
+        <input type="number" name="capacity" required min="1" max="10" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px;">قیمت هر شب (تومان): *</label>
+        <input type="number" name="price_per_night" required min="0" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px;">توضیحات:</label>
+        <textarea name="description" rows="3" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+    </div>
+
+    <div>
+        <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">ذخیره</button>
+        <a href="/rooms" style="color: #000; margin-right: 20px;">انصراف</a>
+    </div>
+</form>
+{% endblock %}
