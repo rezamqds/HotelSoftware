@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>جزئیات مسافر</h1>
+
+<div style="max-width: 800px; margin: 0 auto; background-color: #d7d6ff; padding: 20px; border-radius: 10px;">
+    <h2>{{ data.guest.name }} {{ data.guest.last_name }}</h2>
+
+    <table style="width: 100%; direction: rtl; border-collapse: collapse;">
+        <tr>
+            <td style="padding: 8px; font-weight: bold;">نوع:</td>
+            <td style="padding: 8px;">{{ data.guest.is_foreign }}</td>
+            <td style="padding: 8px; font-weight: bold;">ملیت:</td>
+            <td style="padding: 8px;">{{ data.guest.nationality }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold;">نام پدر:</td>
+            <td style="padding: 8px;">{{ data.guest.father_name if data.guest.father_name else '-' }}</td>
+            <td style="padding: 8px; font-weight: bold;">کد ملی:</td>
+            <td style="padding: 8px;">{{ data.guest.national_id if data.guest.national_id else '-' }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold;">پاسپورت:</td>
+            <td style="padding: 8px;">{{ data.guest.passport_number if data.guest.passport_number else '-' }}</td>
+            <td style="padding: 8px; font-weight: bold;">جنسیت:</td>
+            <td style="padding: 8px;">{{ data.guest.gender if data.guest.gender else '-' }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold;">تاریخ تولد:</td>
+            <td style="padding: 8px;">{{ data.guest.date_of_birth if data.guest.date_of_birth else '-' }}</td>
+            <td style="padding: 8px; font-weight: bold;">تلفن:</td>
+            <td style="padding: 8px;">{{ data.guest.phone_number if data.guest.phone_number else '-' }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold;">ورود:</td>
+            <td style="padding: 8px;">{{ data.guest.arrival_date }}</td>
+            <td style="padding: 8px; font-weight: bold;">خروج:</td>
+            <td style="padding: 8px;">{{ data.guest.departure_date }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold;">اتاق:</td>
+            <td style="padding: 8px;">{{ data.guest.room_number if data.guest.room_number else '-' }}</td>
+            <td style="padding: 8px; font-weight: bold;">شغل:</td>
+            <td style="padding: 8px;">{{ data.guest.occupation if data.guest.occupation else '-' }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold;">واحد اقامتی:</td>
+            <td style="padding: 8px;">{{ data.guest.residence_unit if data.guest.residence_unit else '-' }}</td>
+            <td style="padding: 8px; font-weight: bold;">لیدر:</td>
+            <td style="padding: 8px;">{{ data.guest.leader_name if data.guest.leader_name else '-' }}</td>
+        </tr>
+    </table>
+
+    <h3 style="margin-top: 30px;">اطلاعات مالی</h3>
+    <table style="width: 100%; direction: rtl; border-collapse: collapse;">
+        <tr>
+            <td style="padding: 8px; font-weight: bold;">نوع پرداخت:</td>
+            <td style="padding: 8px;">{{ data.guest.payment_type if data.guest.payment_type else '-' }}</td>
+            <td style="padding: 8px; font-weight: bold;">پیش پرداخت:</td>
+            <td style="padding: 8px;">{{ "{:,.0f}".format(data.guest.advance_payment) if data.guest.advance_payment else '0' }} تومان</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold;">مانده:</td>
+            <td style="padding: 8px;">{{ "{:,.0f}".format(data.guest.balance) if data.guest.balance else '0' }} تومان</td>
+            <td style="padding: 8px; font-weight: bold;">مبلغ کل:</td>
+            <td style="padding: 8px;">{{ "{:,.0f}".format(data.guest.total_amount) if data.guest.total_amount else '0' }} تومان</td>
+        </tr>
+    </table>
+
+    {% if data.guest.note %}
+    <h3 style="margin-top: 30px;">یادداشت</h3>
+    <p>{{ data.guest.note }}</p>
+    {% endif %}
+
+    {% if data.companions %}
+    <h3 style="margin-top: 30px;">همسفران ({{ data.companions|length }})</h3>
+    <table style="width: 100%; direction: rtl; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color: rgb(152, 96, 255); color: white;">
+                <th>نام</th>
+                <th>نام خانوادگی</th>
+                <th>نسبت</th>
+                <th>کد ملی/پاسپورت</th>
+                <th>یادداشت</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comp in data.companions %}
+            <tr>
+                <td>{{ comp.name }}</td>
+                <td>{{ comp.last_name }}</td>
+                <td>{{ comp.relation }}</td>
+                <td>{{ comp.national_id if comp.national_id else comp.passport_number }}</td>
+                <td>{{ comp.note }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+
+<div style="margin-top: 20px; text-align: center;">
+    <a href="/guest/{{ data.guest.id }}/edit" style="background-color: #2196F3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">ویرایش</a>
+    <a href="/list" style="color: #000; margin-right: 20px;">بازگشت به لیست</a>
+</div>
+{% endblock %}

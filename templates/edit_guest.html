@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>ویرایش مسافر</h1>
+
+<form action="/guest/{{ data.guest.id }}/edit" method="POST" style="max-width: 700px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div>
+            <label style="display: block; margin-bottom: 5px;">نام: *</label>
+            <input type="text" name="name" value="{{ data.guest.name }}" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 5px;">نام خانوادگی: *</label>
+            <input type="text" name="last_name" value="{{ data.guest.last_name }}" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 5px;">نام پدر:</label>
+            <input type="text" name="father_name" value="{{ data.guest.father_name or '' }}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 5px;">کد ملی:</label>
+            <input type="text" name="national_id" value="{{ data.guest.national_id or '' }}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 5px;">شماره پاسپورت:</label>
+            <input type="text" name="passport_number" value="{{ data.guest.passport_number or '' }}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 5px;">تلفن:</label>
+            <input type="text" name="phone_number" value="{{ data.guest.phone_number or '' }}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 5px;">تاریخ ورود: *</label>
+            <input type="date" name="arrival_date" value="{{ data.guest.arrival_date }}" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 5px;">تاریخ خروج: *</label>
+            <input type="date" name="departure_date" value="{{ data.guest.departure_date }}" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 5px;">اتاق:</label>
+            <select name="room_id" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                <option value="">بدون اتاق</option>
+                {% for room in rooms %}
+                <option value="{{ room.id }}" {% if data.guest.room_id == room.id %}selected{% endif %}>
+                    {{ room.room_number }} - {{ room.room_type }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 5px;">نوع پرداخت:</label>
+            <input type="text" name="payment_type" value="{{ data.guest.payment_type or '' }}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 5px;">پیش پرداخت:</label>
+            <input type="number" name="advance_payment" step="0.01" value="{{ data.guest.advance_payment or 0 }}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 5px;">مانده:</label>
+            <input type="number" name="balance" step="0.01" value="{{ data.guest.balance or 0 }}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 5px;">مبلغ کل:</label>
+            <input type="number" name="total_amount" step="0.01" value="{{ data.guest.total_amount or 0 }}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+    </div>
+
+    <div style="margin-top: 15px;">
+        <label style="display: block; margin-bottom: 5px;">یادداشت:</label>
+        <textarea name="note" rows="3" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">{{ data.guest.note or '' }}</textarea>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <button type="submit" style="background-color: #4CAF50; color: white; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer;">ذخیره تغییرات</button>
+        <a href="/guest/{{ data.guest.id }}" style="color: #000; margin-right: 20px;">انصراف</a>
+    </div>
+</form>
+{% endblock %}
